@@ -1,18 +1,15 @@
 import React from "react";
-import LeftMenu from "./menu/LeftMenu";
-import MenuItem from "./menu/MenuItem";
-import SearchIcon from "@mui/icons-material/Search"
+import LeftMenu from "./menu/MainMenu";
+import Note from "./utils/Note";
+import Notes from "./main/Notes";
 
 export default function App() {
 
     return (
-        <>
+        <div className="flex">
             <LeftMenu />
-            <MenuItem
-                label="Sexo"
-                Icon={SearchIcon}
-            />
-        </>
+            <Notes notes={[]}/>
+        </div>
     )
 
 }

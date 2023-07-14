@@ -12,10 +12,10 @@ interface PropMenuItem {
 export default function MenuItem({ onClick, label, Icon }: PropMenuItem) {
 
     return (
-        <div className='flex gap-3 items-center justify-center'>
+        <div className='flex gap-2 items-center justify-start mb-1'>
             <Icon />
             <p
-                className="font-bold text-lg tracking-wider uppercase"
+                className="font-ligth text-sm tracking-wider captalize cursor-pointer"
                 onClick={onClick}
             >{label}</p>
         </div>

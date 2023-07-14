@@ -7,7 +7,7 @@ interface PropSearchBarMenu { }
 export default function SearchBarMenu({ }: PropSearchBarMenu) {
 
     return (
-        <div>
+        <div className='mb-10'>
             <TextField
                 className="rounded-lg w-13 h-2"
                 label="Pesquisar"
