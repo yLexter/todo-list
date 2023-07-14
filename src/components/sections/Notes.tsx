@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { INote } from '../../tsUtils/interfaces';
 import Note from '../utils/Note';
 import TitleOption from '../utils/TitleOption';
-import { Box, Button, IconButton } from '@mui/material';
+import { Box, Button, IconButton, Modal, TextField } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import CloseIcon from '@mui/icons-material/Close';
+import SaveIcon from '@mui/icons-material/Save';
 
 interface PropNotes {
     notes: INote[]
@@ -17,7 +19,8 @@ const ButtonAddNote = ({ onClick }: { onClick: (e: React.MouseEvent<HTMLButtonEl
                 width: "30%",
                 heigth: "384px",
                 display: "grid",
-                placeItems: "center"
+                placeItems: "center",
+                backgroundColor: "rgb(255, 255, 255, 0.2)"
             }}
         >
             <IconButton
@@ -37,7 +40,78 @@ const ButtonAddNote = ({ onClick }: { onClick: (e: React.MouseEvent<HTMLButtonEl
 
 }
 
+const ModalAddNote = ({ openModal, closeModal }: { openModal: true, closeModal: () => void }) => {
+
+    return (
+        <Modal
+            open={openModal}
+            onClose={closeModal}
+            sx={{
+                display: "grid",
+                placeItems: "center"
+            }}
+        >
+
+            <Box
+                sx={{
+                    width: "30%",
+                    height: "80vh",
+                    backgroundColor: "white",
+
+                }}
+            >
+
+                <div className=''>
+
+                    <IconButton onClick={closeModal}>
+                        <CloseIcon />
+                    </IconButton>
+
+                    <div className="flex flex-col gap-7 p-4">
+
+                        <h1>Salvar Nota</h1>
+
+                        <TextField label="Título" variant='standard' />
+
+                        <TextField
+                            label="Descrição"
+                            multiline
+                            rows={4}
+                            variant="standard"
+                        />
+
+                        <Button
+                           startIcon={<SaveIcon/>}
+                           variant='contained'
+                         >Salvar</Button>
+
+                    </div>
+
+                </div>
+
+
+
+            </Box>
+
+        </Modal>
+
+    )
+
+
+}
+
+
 export default function Notes({ notes }: PropNotes) {
+
+    const [openModal, setOpenModal] = useState(false)
+
+    const handleClose = () => {
+        setOpenModal(false)
+    }
+
+    const handleOpen = () => {
+        setOpenModal(true)
+    }
 
     const examplesNotes: INote[] = [
         {
@@ -67,20 +141,19 @@ export default function Notes({ notes }: PropNotes) {
         },
     ];
 
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-
-    }
-
     return (
         <div className='col-span-9'>
             <TitleOption title='Anotações' />
 
             <div className='flex flex-wrap gap-2 p-4'>
                 {examplesNotes.map(note => <Note key={note.id} note={note} />)}
-                <ButtonAddNote onClick={handleClick} />
+                <ButtonAddNote onClick={e => handleOpen()} />
             </div>
 
-
+            {openModal && <ModalAddNote
+                openModal={openModal}
+                closeModal={handleClose}
+            />}
 
         </div>
     );
