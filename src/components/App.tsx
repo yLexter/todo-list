@@ -1,12 +1,12 @@
 import React from "react";
-import LeftMenu from "./menu/MainMenu";
+import LeftMenu from "./sections/MainMenu";
 import Note from "./utils/Note";
-import Notes from "./main/Notes";
+import Notes from "./sections/Notes";
 
 export default function App() {
 
     return (
-        <div className="flex">
+        <div className="grid grid-cols-12 gap-4">
             <LeftMenu />
             <Notes notes={[]}/>
         </div>

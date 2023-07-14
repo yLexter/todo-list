@@ -1,14 +1,14 @@
 import React from 'react';
-import Header from './Header';
-import SearchBarMenu from './SearchBarMenu';
-import TaskMenu from './TaskMenu';
+import Header from '../menu/Header';
+import SearchBarMenu from '../menu/SearchBarMenu';
+import TaskMenu from '../menu/TaskMenu';
 
 interface PropMainMenu {}
 
 export default function MainMenu ({}: PropMainMenu) {
 
     return (
-        <div className='w-1/2 flex flex-col h-screen bg-stone-300 p-3'>
+        <div className='col-span-3 flex flex-col h-screen bg-stone-300 p-3'>
             <Header/>
             <SearchBarMenu/>
             <TaskMenu/>

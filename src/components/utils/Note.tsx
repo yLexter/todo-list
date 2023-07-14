@@ -13,8 +13,9 @@ export default function Note({ note }: IPropNotes) {
 
     return (
         <div
-           className='h-96 w-1/4 rounded-md p-5 shadow-lg'
+           className='h-96 rounded-md p-5 shadow-lg'
            style={{
+              width: "30%",
               backgroundColor: `rgb(${r}, ${g}, ${b}, 0.4)`
            }}
           >

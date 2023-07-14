@@ -1,9 +1,40 @@
 import React from 'react';
 import { INote } from '../../tsUtils/interfaces';
 import Note from '../utils/Note';
+import TitleOption from '../utils/TitleOption';
+import { Box, Button, IconButton } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 interface PropNotes {
     notes: INote[]
+}
+
+const ButtonAddNote = ({ onClick }: { onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void }) => {
+
+    return (
+        <Box
+            sx={{
+                width: "30%",
+                heigth: "384px",
+                display: "grid",
+                placeItems: "center"
+            }}
+        >
+            <IconButton
+                onClick={onClick}
+                sx={{
+                    width: "100%"
+                }}
+            >
+                <AddIcon sx={{
+                    width: "30%",
+                    height: "30%"
+                }} />
+            </IconButton>
+        </Box>
+
+    )
+
 }
 
 export default function Notes({ notes }: PropNotes) {
@@ -36,13 +67,19 @@ export default function Notes({ notes }: PropNotes) {
         },
     ];
 
-    return (
-        <div>
-            <h1>Anotações</h1>
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 
-            <div className='flex flex-wrap'>
+    }
+
+    return (
+        <div className='col-span-9'>
+            <TitleOption title='Anotações' />
+
+            <div className='flex flex-wrap gap-2 p-4'>
                 {examplesNotes.map(note => <Note key={note.id} note={note} />)}
+                <ButtonAddNote onClick={handleClick} />
             </div>
+
 
 
         </div>
