@@ -1,15 +1,15 @@
 import React from 'react';
 import { INote } from '../../../tsUtils/interfaces';
+import { Utils } from '@/tsUtils/classes';
 
 interface IPropNotes {
     note: INote
 }
 
-const randomNumber = (max: number) => ~~(Math.random() * max)
 
 export default function Note({ note }: IPropNotes) {
 
-    const [r,g,b] = [randomNumber(256), randomNumber(256), randomNumber(256)]
+    const [r,g,b] = Utils.getRandomRGB();
 
     return (
         <div
