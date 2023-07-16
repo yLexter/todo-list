@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { INote } from '../../tsUtils/interfaces';
-import Note from '../utils/Note';
+import React, { memo, useState } from 'react';
+import { INote } from '../../../tsUtils/interfaces';
+import Note from './Note';
 import TitleOption from '../utils/TitleOption';
-import { Box, Button, IconButton, Modal, TextField } from '@mui/material';
+import { Box, Button, IconButton, Modal, TextField, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import SaveIcon from '@mui/icons-material/Save';
@@ -69,7 +69,9 @@ const ModalAddNote = ({ openModal, closeModal }: { openModal: true, closeModal: 
 
                     <div className="flex flex-col gap-7 p-4">
 
-                        <h1>Salvar Nota</h1>
+                        <Typography variant='h1' fontSize="2rem" alignSelf="center" >
+                            Adicionar Nota
+                        </Typography>
 
                         <TextField label="Título" variant='standard' />
 
@@ -81,9 +83,9 @@ const ModalAddNote = ({ openModal, closeModal }: { openModal: true, closeModal: 
                         />
 
                         <Button
-                           startIcon={<SaveIcon/>}
-                           variant='contained'
-                         >Salvar</Button>
+                            startIcon={<SaveIcon />}
+                            variant='contained'
+                        >Salvar</Button>
 
                     </div>
 
@@ -158,3 +160,4 @@ export default function Notes({ notes }: PropNotes) {
         </div>
     );
 };
+

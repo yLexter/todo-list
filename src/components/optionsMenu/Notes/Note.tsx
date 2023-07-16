@@ -1,5 +1,5 @@
 import React from 'react';
-import { INote } from '../../tsUtils/interfaces';
+import { INote } from '../../../tsUtils/interfaces';
 
 interface IPropNotes {
     note: INote
