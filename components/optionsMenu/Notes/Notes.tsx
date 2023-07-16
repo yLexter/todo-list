@@ -1,3 +1,5 @@
+'use client'
+
 import React, { memo, useState } from 'react';
 import { INote } from '../../../tsUtils/interfaces';
 import Note from './Note';
