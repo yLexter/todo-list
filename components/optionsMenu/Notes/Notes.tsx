@@ -92,18 +92,10 @@ const ModalAddNote = ({ openModal, closeModal }: { openModal: true, closeModal: 
                     </div>
 
                 </div>
-
-
-
             </Box>
-
         </Modal>
-
     )
-
-
 }
-
 
 export default function Notes({ notes }: PropNotes) {
 

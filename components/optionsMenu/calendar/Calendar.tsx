@@ -3,11 +3,11 @@
 import { Box, Button, IconButton, Tab, Tabs } from '@mui/material';
 import React, { useState } from 'react';
 import TitleOption from '../utils/TitleOption';
-
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { ITask } from '@/tsUtils/interfaces';
-import { Utils } from '@/tsUtils/classes';
+import TabDay from './TabDay';
+import TabWeek from './TabWeek';
 
 interface IPropCalendar { }
 
@@ -18,7 +18,6 @@ interface IPropTabPanel {
 }
 
 const TabPanel = ({ children, value, index }: IPropTabPanel) => {
-
     return (
         <>
             {value === index &&
@@ -28,29 +27,6 @@ const TabPanel = ({ children, value, index }: IPropTabPanel) => {
         </>
     )
 }
-
-const TabPanelChildren = ({ task }: { task: ITask }) => {
-
-    const [r, g, b] = Utils.getRandomRGB();
-
-    return (
-        <Box className='h-20 w-full flex gap-2'>
-
-            <div className='w-1/12 self-center'>
-                {Utils.getTimeFormatted(task.date)}
-            </div>
-
-            <div
-                style={{ backgroundColor: `rgb(${r},${g},${b}, 0.5)` }}
-                className='w-11/12 p-3'>
-                <p>{task.content}</p>
-            </div>
-        </Box>
-    )
-
-
-}
-
 
 export default function Calendar({ }: IPropCalendar) {
 
@@ -66,21 +42,41 @@ export default function Calendar({ }: IPropCalendar) {
         year: 'numeric'
     });
 
-    const exampleTask: ITask = {
-        id: "z",
-        content: "mucho sexo",
-        date: new Date()
-    }
+    const tasks: ITask[] = [
+        {
+            id: "a",
+            content: "task1",
+            date: new Date()
+        },
+        {
+            id: "y",
+            content: "task 2",
+            date: new Date(Date.now() + 3600 * 1000 * 10 + 5 * 1000)
+        },
+        {
+            id: "z",
+            content: "task 3",
+            date: new Date(Date.now() + 3600 * 1000 * 28 + 10 * 1000)
+        }
+    ]
+
+    const sortedTasks = tasks.sort((a, b) => {
+        const [hours1, minutes1] = [a.date.getHours(), a.date.getMinutes()]
+        const [hours2, minutes2] = [b.date.getHours(), b.date.getMinutes()]
+
+        return hours1 - hours2 || minutes1 - minutes2
+    })
+
 
     return (
         <Box className="col-span-9 w-full p-5"  >
 
-            <div className='flex justify-between gap-2 mb-4'>
+            <div className='flex justify-between gap-2 mb-5'>
                 <TitleOption title={dateToString} />
                 <Button>Adicionar Evento</Button>
             </div>
 
-            <div className='flex justify-between items-center mb-2'>
+            <div className='flex justify-between items-center mb-6'>
                 <Tabs onChange={handleChange} value={currentTab} >
                     <Tab label="Dia" value={1} />
                     <Tab label="Semana" value={2} />
@@ -99,10 +95,10 @@ export default function Calendar({ }: IPropCalendar) {
             </div>
 
             <TabPanel value={currentTab} index={1}>
-                <TabPanelChildren task={exampleTask} />
+                <TabDay tasks={sortedTasks} />
             </TabPanel>
             <TabPanel value={currentTab} index={2}>
-                Item Two
+               <TabWeek tasks={sortedTasks}/>
             </TabPanel>
             <TabPanel value={currentTab} index={3}>
                 Item Three

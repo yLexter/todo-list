@@ -9,14 +9,12 @@ interface IPropNotes {
 
 export default function Note({ note }: IPropNotes) {
 
-    const [r,g,b] = Utils.getRandomRGB();
-
     return (
         <div
            className='h-96 rounded-md p-5 shadow-lg'
            style={{
               width: "30%",
-              backgroundColor: `rgb(${r}, ${g}, ${b}, 0.4)`
+              backgroundColor: Utils.getRandomColor()
            }}
           >
             <h3 className='capitalize font-bold mb-3 text-2xl'>{note.title}</h3>
