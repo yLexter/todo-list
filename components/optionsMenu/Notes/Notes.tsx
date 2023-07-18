@@ -1,100 +1,15 @@
 'use client'
 
-import React, { memo, useState } from 'react';
+import React, { useState } from 'react';
 import { INote } from '../../../tsUtils/interfaces';
 import Note from './Note';
 import TitleOption from '../utils/TitleOption';
-import { Box, Button, IconButton, Modal, TextField, Typography } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import CloseIcon from '@mui/icons-material/Close';
-import SaveIcon from '@mui/icons-material/Save';
+import AddNote from '../../modals/ModalAddNote';
+import ButtonAddNote from './ButtonAddNote';
+import ModalAddNote from '../../modals/ModalAddNote';
 
 interface PropNotes {
     notes: INote[]
-}
-
-const ButtonAddNote = ({ onClick }: { onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void }) => {
-
-    return (
-        <Box
-            sx={{
-                width: "30%",
-                heigth: "384px",
-                display: "grid",
-                placeItems: "center",
-                backgroundColor: "rgb(255, 255, 255, 0.2)"
-            }}
-        >
-            <IconButton
-                onClick={onClick}
-                sx={{
-                    width: "100%"
-                }}
-            >
-                <AddIcon sx={{
-                    width: "30%",
-                    height: "30%"
-                }} />
-            </IconButton>
-        </Box>
-
-    )
-
-}
-
-const ModalAddNote = ({ openModal, closeModal }: { openModal: true, closeModal: () => void }) => {
-
-    return (
-        <Modal
-            open={openModal}
-            onClose={closeModal}
-            sx={{
-                display: "grid",
-                placeItems: "center"
-            }}
-        >
-
-            <Box
-                sx={{
-                    width: "30%",
-                    height: "80vh",
-                    backgroundColor: "white",
-
-                }}
-            >
-
-                <div className=''>
-
-                    <IconButton onClick={closeModal}>
-                        <CloseIcon />
-                    </IconButton>
-
-                    <div className="flex flex-col gap-7 p-4">
-
-                        <Typography variant='h1' fontSize="2rem" alignSelf="center" >
-                            Adicionar Nota
-                        </Typography>
-
-                        <TextField label="Título" variant='standard' />
-
-                        <TextField
-                            label="Descrição"
-                            multiline
-                            rows={4}
-                            variant="standard"
-                        />
-
-                        <Button
-                            startIcon={<SaveIcon />}
-                            variant='contained'
-                        >Salvar</Button>
-
-                    </div>
-
-                </div>
-            </Box>
-        </Modal>
-    )
 }
 
 export default function Notes({ notes }: PropNotes) {
@@ -146,11 +61,7 @@ export default function Notes({ notes }: PropNotes) {
                 <ButtonAddNote onClick={e => handleOpen()} />
             </div>
 
-            {openModal && <ModalAddNote
-                openModal={openModal}
-                closeModal={handleClose}
-            />}
-
+            <ModalAddNote handleClose={handleClose} isOpen={openModal}/>
         </div>
     );
 };

@@ -12,12 +12,9 @@ type PropMenuItem = {
 export default function MenuItem({ onClick, label, Icon }: PropMenuItem) {
 
     return (
-        <div className='flex gap-2 items-center justify-start mb-1 cursor-pointer'>
+        <div onClick={onClick} className='flex gap-2 items-center justify-start mb-1 cursor-pointer'>
             <Icon />
-            <p
-                className="font-ligth text-base tracking-wider captalize"
-                onClick={onClick}
-            >{label}</p>
+            <p className="font-ligth text-base tracking-wider captalize" >{label}</p>
         </div>
     );
 

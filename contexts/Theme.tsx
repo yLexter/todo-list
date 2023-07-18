@@ -1,31 +1,32 @@
 'use client'
 
 import { DarkTheme, LigthTheme } from "@/themes"
-import { ThemeProvider } from "@mui/material"
+import { Theme, ThemeProvider } from "@mui/material"
 import { createContext, useCallback, useMemo, useState, useContext } from "react"
 
 type TOptionsTheme = "light" | "dark"
 
 interface IThemeProps {
-    theme: TOptionsTheme
+    themeName: TOptionsTheme
     toggleTheme: () => void
+    theme: Theme
 }
 
 const ThemeContext = createContext({} as IThemeProps);
 
 export const AppThemeProvider = ({ children }: { children: React.ReactNode }) => {
-    const [theme, setTheme] = useState<TOptionsTheme>("light");
+    const [themeName, setTheme] = useState<TOptionsTheme>("light");
 
     const toggleTheme = useCallback(() => {
         setTheme(oldTheme => oldTheme == "light" ? "dark" : "light");
     }, [])
 
     const currentTheme = useMemo(() => {
-        return theme == "light" ? LigthTheme : DarkTheme;
-    }, [theme])
+        return themeName == "light" ? LigthTheme : DarkTheme;
+    }, [themeName])
 
     return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <ThemeContext.Provider value={{ theme: currentTheme, themeName, toggleTheme }}>
             <ThemeProvider theme={currentTheme}>
                 {children}
             </ThemeProvider>

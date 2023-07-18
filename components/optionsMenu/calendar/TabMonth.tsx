@@ -14,12 +14,12 @@ const TableBodyMonth = ({ tasks }: IPropTabWeek) => {
     const firstDayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     const dayOfFirstDayDate  = firstDayDate.getDay()
     const informationMonth = Utils.getMonthOfYear(currentDate.getFullYear(), currentDate.getMonth());
-    const totalColumns = Math.ceil((informationMonth.total + dayOfFirstDayDate) / totalDayOfWeek)
+    const totalLines = Math.ceil((informationMonth.total + dayOfFirstDayDate) / totalDayOfWeek)
     let currentDay = 1
 
     return (
         <TableBody>
-            {[...Array(totalColumns)].map((ignored, column) => (
+            {[...Array(totalLines)].map((ignored, column) => (
                 <TableRow>
                     {[...Array(totalDayOfWeek)].map((ignored2, day) => {
 

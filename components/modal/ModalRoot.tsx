@@ -1,19 +1,37 @@
-import { Modal } from '@mui/material';
+import { useAppThemeContext } from '@/contexts';
+import { Box, Modal } from '@mui/material';
 import React, { JSXElementConstructor, ReactElement } from 'react';
 
-interface IPropModalRoot {
-    openModal: boolean
-    children: ReactElement<any, string | JSXElementConstructor<any>>
-    handleClose: () => void
+type IPropModalRoot = {
+    isOpen: boolean;
+    children: ReactElement<any, string | JSXElementConstructor<any>>;
+    handleClose: () => void;
+    className?: string;
 }
 
-export default function ModalRoot({ children, openModal, handleClose }: IPropModalRoot) {
+export default function ModalRoot({
+    children,
+    isOpen,
+    handleClose,
+    className = 'w-96 h-96'
+}: IPropModalRoot) {
+
+    const { theme } = useAppThemeContext();
 
     return (
         <Modal
+            className='flex justify-center items-center'
             onClose={handleClose}
-            open={openModal} >
-           {children}
+            open={isOpen} >
+
+            <div
+                style={{
+                    position: "relative",
+                    backgroundColor: theme.palette.background.paper
+                }}
+                className={className}>
+                {children}
+            </div>
         </Modal>
     );
 };
