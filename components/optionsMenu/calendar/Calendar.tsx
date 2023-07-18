@@ -8,6 +8,7 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { ITask } from '@/tsUtils/interfaces';
 import TabDay from './TabDay';
 import TabWeek from './TabWeek';
+import TabMonth from './TabMonth';
 
 interface IPropCalendar { }
 
@@ -61,10 +62,10 @@ export default function Calendar({ }: IPropCalendar) {
     ]
 
     const sortedTasks = tasks.sort((a, b) => {
-        const [hours1, minutes1] = [a.date.getHours(), a.date.getMinutes()]
-        const [hours2, minutes2] = [b.date.getHours(), b.date.getMinutes()]
+        const [hours1, minutes1] = [a.date.getHours(), a.date.getMinutes()];
+        const [hours2, minutes2] = [b.date.getHours(), b.date.getMinutes()];
 
-        return hours1 - hours2 || minutes1 - minutes2
+        return hours1 - hours2 || minutes1 - minutes2;
     })
 
 
@@ -98,12 +99,11 @@ export default function Calendar({ }: IPropCalendar) {
                 <TabDay tasks={sortedTasks} />
             </TabPanel>
             <TabPanel value={currentTab} index={2}>
-               <TabWeek tasks={sortedTasks}/>
+                <TabWeek tasks={sortedTasks} />
             </TabPanel>
             <TabPanel value={currentTab} index={3}>
-                Item Three
+                <TabMonth tasks={sortedTasks} />
             </TabPanel>
-
         </Box >
     );
 };

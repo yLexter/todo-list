@@ -1,8 +1,7 @@
 
 import { Utils } from '@/tsUtils/classes';
 import { ITask } from '@/tsUtils/interfaces';
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import { utimesSync } from 'fs';
+import {  Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import React from 'react';
 
 interface IPropTabWeek {
@@ -11,16 +10,6 @@ interface IPropTabWeek {
 
 
 export default function TabWeek({ tasks }: IPropTabWeek) {
-
-    const daysOfWeek = [
-        { name: "Seg", day: 1, },
-        { name: "Ter", day: 2, },
-        { name: "Qua", day: 3, },
-        { name: "Qui", day: 4, },
-        { name: "Sex", day: 5, },
-        { name: "Sáb", day: 6, },
-        { name: "Dom", day: 7, }
-    ]
 
     const timesNonRepetating = tasks.reduce((acc, task) => {
         const time = Utils.getTimeFormatted(task.date);
@@ -42,7 +31,7 @@ export default function TabWeek({ tasks }: IPropTabWeek) {
                 <TableHead>
                     <TableRow>
                         <TableCell></TableCell>
-                        {daysOfWeek.map(day => <TableCell key={`HeadTable-${day.name}`} >{day.name}</TableCell>)}
+                        {Utils.daysOfWeek.map(day => <TableCell key={`HeadTable-${day.name}`} >{day.name}</TableCell>)}
                     </TableRow>
                 </TableHead>
 
@@ -53,7 +42,7 @@ export default function TabWeek({ tasks }: IPropTabWeek) {
 
                                 <TableCell>{time}</TableCell>
 
-                                {daysOfWeek.map(({ name, day }) => {
+                                {Utils.daysOfWeek.map(({ name, day }) => {
 
                                     return tasks.map(task => {
 

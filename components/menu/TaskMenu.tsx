@@ -14,7 +14,7 @@ export default function TaskMenu({ }: PropTaskMenu) {
 
     return (
         <ListItems text='Tarefas'>
-            <MenuItem onClick={() => toggleOption("notes")} label='Figurinhas' Icon={StickyNote2Icon} />
+            <MenuItem onClick={() => toggleOption("notes")} label='Notas' Icon={StickyNote2Icon} />
             <MenuItem onClick={() => toggleOption("calendar")} label='Calendário' Icon={CalendarMonthIcon} />
             <MenuItem onClick={() => toggleOption("today")} label='Hoje' Icon={FormatListNumberedIcon} />
         </ListItems >
