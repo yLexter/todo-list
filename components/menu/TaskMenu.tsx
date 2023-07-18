@@ -1,27 +1,23 @@
-
-
 import React from 'react';
 import MenuItem from './MenuItem';
 import StickyNote2Icon from '@mui/icons-material/StickyNote2';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
-import TitleMenu from './TitleMenu';
+import ListItems from './ListItems';
+import { useOptionMenuContext } from '@/contexts/OptionMenu';
 
-interface PropTaskMenu {}
+interface PropTaskMenu { }
 
-export default function TaskMenu ({}: PropTaskMenu) {
+export default function TaskMenu({ }: PropTaskMenu) {
+
+    const { toggleOption } = useOptionMenuContext();
 
     return (
-        <div className='flex flex-col gap-2'>
-
-            <TitleMenu text='Tarefas'/>
-
-            <div className='pl-1'>
-                <MenuItem label='Figurinhas' Icon={StickyNote2Icon} />
-                <MenuItem label='Calendário' Icon={CalendarMonthIcon}/>
-                <MenuItem label='Hoje' Icon={FormatListNumberedIcon}/>
-            </div>
-        </div>
+        <ListItems text='Tarefas'>
+            <MenuItem onClick={() => toggleOption("notes")} label='Figurinhas' Icon={StickyNote2Icon} />
+            <MenuItem onClick={() => toggleOption("calendar")} label='Calendário' Icon={CalendarMonthIcon} />
+            <MenuItem onClick={() => toggleOption("today")} label='Hoje' Icon={FormatListNumberedIcon} />
+        </ListItems >
     );
 };
 

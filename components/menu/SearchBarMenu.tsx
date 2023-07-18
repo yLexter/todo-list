@@ -7,19 +7,17 @@ interface PropSearchBarMenu { }
 export default function SearchBarMenu({ }: PropSearchBarMenu) {
 
     return (
-        <div className='mb-10'>
-            <TextField
-                className="rounded-lg w-13 h-2"
-                label="Pesquisar"
-                variant="outlined"
-                InputProps={{
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            <SearchIcon />
-                        </InputAdornment>
-                    ),
-                }}
-            />
-        </div>
-    );
+        <TextField
+            className="rounded-lg w-13 h-2"
+            variant="outlined"
+            placeholder='Pesquisar'
+            InputProps={{
+                startAdornment: (
+                    <InputAdornment position="start">
+                        <SearchIcon />
+                    </InputAdornment>
+                ),
+            }}
+        />
+    )
 };

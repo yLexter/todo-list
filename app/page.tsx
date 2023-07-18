@@ -1,18 +1,18 @@
 'use client'
 
 import React from "react";
-import LeftMenu from "../components/menu/MainMenu";
-import Note from "../components/optionsMenu/Notes/Note";
-import Notes from "../components/optionsMenu/Notes/Notes";
-import Calendar from "../components/optionsMenu/calendar/Calendar";
+import { AppThemeProvider } from "@/contexts";
+import Home from "@/components/home/Home";
+import { OptionMenuProvider } from "@/contexts/OptionMenu";
 
 export default function App() {
 
     return (
-        <div className="grid grid-cols-12 gap-4">
-            <LeftMenu />
-            <Calendar/>
-        </div>
+        <AppThemeProvider>
+            <OptionMenuProvider>
+                <Home />
+            </OptionMenuProvider>
+        </AppThemeProvider>
     )
 
 }
