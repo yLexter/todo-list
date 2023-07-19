@@ -9,7 +9,7 @@ export default function Lists({ }: IPropLists) {
 
     return (
         <ListItems text='Listas'>
-            <MenuItem Icon={AddIcon} label="Adicionar Lista" />
+            <MenuItem onClick={() => {}} Icon={AddIcon} label="Adicionar Lista" />
         </ListItems>
     );
 };

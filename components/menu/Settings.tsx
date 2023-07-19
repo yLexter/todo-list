@@ -14,11 +14,11 @@ export default function Settings({ }: IPropSettings) {
     const { themeName, toggleTheme } = useAppThemeContext();
 
     return (
-        <ItemList>
+        <ItemList text='Configurações'>
             {themeName === "light" && <MenuItem onClick={() => toggleTheme()} Icon={LightModeIcon} label="Tema Claro" />}
             {themeName === "dark" && <MenuItem onClick={() => toggleTheme()} Icon={DarkModeIcon} label="Tema Escuro" />}
-            <MenuItem Icon={MenuIcon} label='Configurações' />
-            <MenuItem Icon={LogoutIcon} label='Sair' />
+            <MenuItem onClick={() => { }} Icon={MenuIcon} label='Configurações' />
+            <MenuItem onClick={() => { }} Icon={LogoutIcon} label='Sair' />
         </ItemList>
     );
 };

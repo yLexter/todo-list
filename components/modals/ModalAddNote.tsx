@@ -1,7 +1,9 @@
 import React from 'react';
-import SaveIcon from '@mui/icons-material/Save';
 import { Box, Button, IconButton, TextField, Typography } from '@mui/material';
 import { CustomModal } from "../modal/Modal"
+import CustomInput from '../utils/inputs/CustomInput';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 type IPropAddNote = {
     isOpen: boolean;
@@ -14,7 +16,7 @@ export default function ModalAddNote({ isOpen, handleClose }: IPropAddNote) {
         <CustomModal.Root
             isOpen={isOpen}
             handleClose={handleClose}
-            className='h-[80vh] w-[30%]' >
+            className='h-auto w-[30%]' >
 
             <>
                 <CustomModal.CloseButton closeModal={handleClose} />
@@ -25,19 +27,29 @@ export default function ModalAddNote({ isOpen, handleClose }: IPropAddNote) {
                             Adicionar Nota
                         </Typography>
 
-                        <TextField label="Título" variant='standard' />
-
                         <TextField
-                            label="Descrição"
-                            multiline
-                            rows={4}
-                            variant="standard"
+                            hiddenLabel
+                            variant='outlined'
                         />
 
-                        <Button
-                            startIcon={<SaveIcon />}
-                            variant='contained'
-                        >Salvar</Button>
+                        <TextField
+                            hiddenLabel
+                            multiline
+                            rows={4}
+                            variant="outlined"
+                        />
+
+                        <div className='flex gap-20'>
+                            <CustomInput title="teste" type='date' />
+                            <CustomInput IconLeft={AccessTimeIcon} title="teste" type='time' />
+                        </div>
+
+                        <div className='flex gap-2 self-center'>
+                            <Button variant="outlined">Cancelar</Button>
+                            <Button color="primary" variant="contained">Salvar</Button>
+                        </div>
+
+
 
                     </div>
                 </Box>

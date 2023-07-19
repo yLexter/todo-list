@@ -1,10 +1,10 @@
 
-import { SvgIconProps } from '@mui/material';
+import { ListItemButton, ListItemIcon, ListItemText, SvgIconProps } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import React from 'react';
 
 type PropMenuItem = {
-    onClick?: () => void;
+    onClick: () => void;
     label: string
     Icon: React.ElementType
 }
@@ -12,10 +12,11 @@ type PropMenuItem = {
 export default function MenuItem({ onClick, label, Icon }: PropMenuItem) {
 
     return (
-        <div onClick={onClick} className='flex gap-2 items-center justify-start mb-1 cursor-pointer'>
-            <Icon />
-            <p className="font-ligth text-base tracking-wider captalize" >{label}</p>
-        </div>
-    );
-
+        <ListItemButton onClick={() => onClick()}>
+            <ListItemIcon>
+                <Icon />
+            </ListItemIcon>
+            <ListItemText primary={label} />
+        </ListItemButton>
+    )
 };
