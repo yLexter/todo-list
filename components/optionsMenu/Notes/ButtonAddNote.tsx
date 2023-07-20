@@ -15,7 +15,7 @@ export default function ButtonAddNote({ onClick }: IPropButtonAddNote) {
                 heigth: "384px",
                 display: "grid",
                 placeItems: "center",
-                backgroundColor: "rgb(255, 255, 255, 0.2)"
+                backgroundColor: "rgb(240, 240, 240, 0.2)"
             }}
         >
             <IconButton onClick={onClick} sx={{ width: "100%" }}>

@@ -1,5 +1,4 @@
-import { useAppThemeContext } from '@/contexts';
-import { Typography } from '@mui/material';
+import { Typography, useTheme } from '@mui/material';
 import React from 'react';
 
 interface PropTitleMenu {
@@ -8,7 +7,7 @@ interface PropTitleMenu {
 
 export default function TitleMenu({ text }: PropTitleMenu) {
 
-    const { theme } = useAppThemeContext();
+    const theme = useTheme();
 
     return (
         <Typography

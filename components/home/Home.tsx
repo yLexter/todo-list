@@ -1,19 +1,21 @@
-'use client'
-
 import React, { ReactNode } from 'react';
 import Calendar from "../optionsMenu/calendar/Calendar"
 import LeftMenu from "../menu/MainMenu"
 import { useOptionMenuContext } from '@/contexts/OptionMenu';
-import { TOptionMenu } from "../../tsUtils"
 import Notes from '../optionsMenu/notes/Notes';
-import { useAppThemeContext } from '@/contexts';
+import { useTheme } from '@mui/material';
+import LoginScreen from '../loginScreen/loginScreen';
 
 type IPropHome = {}
 
 export default function Home({ }: IPropHome) {
 
-    const { theme } = useAppThemeContext();
+    const theme = useTheme();
     const { optionMenu } = useOptionMenuContext();
+
+    return (
+        <LoginScreen/>
+    )
 
     return (
         <div

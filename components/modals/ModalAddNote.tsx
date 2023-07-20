@@ -20,6 +20,7 @@ export default function ModalAddNote({ isOpen, handleClose }: IPropAddNote) {
 
             <>
                 <CustomModal.CloseButton closeModal={handleClose} />
+                
                 <Box >
                     <div className="flex flex-col gap-7 p-4">
 
@@ -40,17 +41,14 @@ export default function ModalAddNote({ isOpen, handleClose }: IPropAddNote) {
                         />
 
                         <div className='flex gap-20'>
-                            <CustomInput title="teste" type='date' />
-                            <CustomInput IconLeft={AccessTimeIcon} title="teste" type='time' />
+                            <CustomInput title="Data" type='date' />
+                            <CustomInput IconLeft={AccessTimeIcon} title="Hprário" type='time' />
                         </div>
 
                         <div className='flex gap-2 self-center'>
-                            <Button variant="outlined">Cancelar</Button>
-                            <Button color="primary" variant="contained">Salvar</Button>
+                            <Button onClick={handleClose} variant="outlined">Cancelar</Button>
+                            <Button variant="contained">Salvar</Button>
                         </div>
-
-
-
                     </div>
                 </Box>
             </>
