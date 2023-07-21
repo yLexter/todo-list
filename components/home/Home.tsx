@@ -4,7 +4,8 @@ import LeftMenu from "../menu/MainMenu"
 import { useOptionMenuContext } from '@/contexts/OptionMenu';
 import Notes from '../optionsMenu/notes/Notes';
 import { useTheme } from '@mui/material';
-import LoginScreen from '../loginScreen/loginScreen';
+import LoginScreen from '../loginScreen/LoginScreen';
+
 
 type IPropHome = {}
 
@@ -14,7 +15,7 @@ export default function Home({ }: IPropHome) {
     const { optionMenu } = useOptionMenuContext();
 
     return (
-        <LoginScreen/>
+        <LoginScreen />
     )
 
     return (
@@ -27,4 +28,8 @@ export default function Home({ }: IPropHome) {
             {optionMenu === "notes" && <Notes notes={[]} />}
         </div>
     );
+
+
+
+
 };
