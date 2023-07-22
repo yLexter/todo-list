@@ -9,25 +9,9 @@ import { ITask } from '@/tsUtils/interfaces';
 import TabDay from './TabDay';
 import TabWeek from './TabWeek';
 import TabMonth from './TabMonth';
+import TabPanel from "./TabPanel"
 
 interface IPropCalendar { }
-
-interface IPropTabPanel {
-    children: React.ReactNode
-    value: number
-    index: number
-}
-
-const TabPanel = ({ children, value, index }: IPropTabPanel) => {
-    return (
-        <>
-            {value === index &&
-                <Box>
-                    {children}
-                </Box>}
-        </>
-    )
-}
 
 export default function Calendar({ }: IPropCalendar) {
 
