@@ -5,6 +5,7 @@ import { useOptionMenuContext } from '@/contexts/OptionMenu';
 import Notes from '../optionsMenu/notes/Notes';
 import { useTheme } from '@mui/material';
 import LoginScreen from '../loginScreen/LoginScreen';
+import { useAuthenticateContext } from '@/contexts';
 
 
 type IPropHome = {}
@@ -13,10 +14,10 @@ export default function Home({ }: IPropHome) {
 
     const theme = useTheme();
     const { optionMenu } = useOptionMenuContext();
+    const { user } = useAuthenticateContext();
 
-    return (
-        <LoginScreen />
-    )
+    if (!user)
+        return <LoginScreen />;
 
     return (
         <div

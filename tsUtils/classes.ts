@@ -7,7 +7,7 @@ export class Utils {
         { name: "Qui", day: 4, },
         { name: "Sex", day: 5, },
         { name: "Sáb", day: 6, },
-        { name: "Dom", day: 7, }
+        { name: "Dom", day: 0, }
     ]
 
     public static getLocalTime(hours: number, minutes: number) {
@@ -20,9 +20,7 @@ export class Utils {
     }
 
     public static getTimeFormatted(date: Date) {
-        return `
-          ${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}
-        `;
+        return `${date.getHours().toString().padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`;
     }
 
     public static getRandomNumber(max: number) {

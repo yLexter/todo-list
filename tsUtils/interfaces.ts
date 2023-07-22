@@ -9,3 +9,10 @@ export interface ITask {
     date: Date
     content: string
 }
+
+export interface IUser {
+    name: string;
+    password: string;
+    notes: INote[]
+    tasks: ITask[]
+}

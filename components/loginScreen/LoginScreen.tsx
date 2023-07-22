@@ -15,6 +15,8 @@ import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import SocialButton from './SocialButton';
+import LockIcon from '@mui/icons-material/Lock';
+import { useAuthenticateContext } from '@/contexts';
 
 type IPropLoginScreen = {}
 
@@ -29,30 +31,31 @@ export default function LoginScreen({ }: IPropLoginScreen) {
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormProps>()
     const [showPassword, setShowPassword] = useState(false)
+    const { authenticateUser } = useAuthenticateContext()
 
     const handleShowPassword = () => {
         setShowPassword(oldShowPassword => !oldShowPassword)
     }
 
     const onSubmit: SubmitHandler<FormProps> = (data) => {
+        authenticateUser();
         console.log(data)
     }
 
     return (
-        <div className='h-[70vh] w-1/3 flex flex-col gap-5 p-4 shadow-lg rounded-md'>
+        <div className='h-[70vh] w-1/3 flex flex-col gap-5 p-4 shadow-lg rounded-md bg-slate-200'>
 
             <div className='mb-4'>
-                <h1>Login</h1>
-                <h2>Faça o login para continuar</h2>
+                <h1 className='font-cb font-bold text-2xl'>Bem Vindo</h1>
+                <h2 className='font-cb font-normal opacity-50 text-xl'>Faça o login para continuar</h2>
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)} className='h-auto w-auto flex flex-col gap-5'>
 
                 <TextField
                     {...register("user", { required: "Este campo é obrigatório" })}
-                    label="Usuário"
+                    placeholder="Digite seu usuário"
                     variant="standard"
-                    placeholder='Digite o usuário'
                     error={!!errors.user?.message}
                     helperText={errors.user?.message || ""}
                     InputProps={{
@@ -70,14 +73,13 @@ export default function LoginScreen({ }: IPropLoginScreen) {
                         {...register("password", { required: "Este campo é obrigatório" })}
                         type={showPassword ? "text" : "password"}
                         variant="standard"
-                        label="Senha"
-                        placeholder="Senha"
+                        placeholder="Digite sua senha"
                         error={!!errors.password?.message}
                         helperText={errors.password?.message || ""}
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <AccountCircleIcon />
+                                    <LockIcon />
                                 </InputAdornment>
                             ),
                             endAdornment: (
@@ -92,25 +94,40 @@ export default function LoginScreen({ }: IPropLoginScreen) {
 
                     <div className="flex items-center justify-between">
                         <FormControlLabel control={<Checkbox />} label="Lembrar-me" />
-                        <a><span className='font-cb font-normal tracking-wide' >Esqueci minha senha</span> </a>
+                        <a href='#'><span className='font-cb font-normal tracking-wide' >Esqueci minha senha</span> </a>
                     </div>
                 </div>
 
-                <CustomButton type='submit' variant='outlined'>
-                    Teste
+                <CustomButton
+                    className='rounded-3xl text-slate-50 bg-teal-600 h-11'
+                    type='submit'
+                    variant='outlined'>
+                    Logar
                 </CustomButton>
             </form>
 
             <Divider />
 
-            <div className="flex gap-4">
-                <SocialButton Icon={GoogleIcon} onClick={() => { }} />
-                <SocialButton Icon={FacebookIcon} onClick={() => { }} />
-                <SocialButton Icon={TwitterIcon} onClick={() => { }} />
+            <div className="flex gap-4 self-center">
+                <SocialButton
+                    sxIcon={{ color: "rgb(233, 30, 99)", fontSize: 40 }}
+                    Icon={GoogleIcon}
+                    onClick={() => { }}
+                />
+                <SocialButton
+                    sxIcon={{ color: "blue", fontSize: 40 }}
+                    Icon={FacebookIcon}
+                    onClick={() => { }}
+                />
+                <SocialButton
+                    sxIcon={{ color: "#00acee ", fontSize: 40 }}
+                    Icon={TwitterIcon}
+                    onClick={() => { }}
+                />
             </div>
 
-            <span>Não possui uma conta? <a href='#'>Cadastre-se</a>  </span>
+            <span>Não possui uma conta? <a className='underline' href='#'>Cadastre-se</a>  </span>
 
-        </div>
+        </div >
     );
 };
