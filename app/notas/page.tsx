@@ -1,18 +1,23 @@
 'use client'
 
 import React, { useState } from 'react';
-import { INote } from '../../../tsUtils/interfaces';
+import { INote } from './../../tsUtils';
 import Note from './Note';
-import TitleOption from '../utils/TitleOption';
-import AddNote from '../../modals/ModalAddNote';
+import TitleOption from '../../components/utils/UI/TitleOption';
+import AddNote from './../../components/modals/ModalAddNote';
 import ButtonAddNote from './ButtonAddNote';
-import ModalAddNote from '../../modals/ModalAddNote';
+import ModalAddNote from './../../components/modals/ModalAddNote'
+import { useAuthenticateContext } from '@/contexts';
+import { redirect } from 'next/navigation';
 
-interface PropNotes {
-    notes: INote[]
-}
+interface PropNotes { }
 
-export default function Notes({ notes }: PropNotes) {
+export default function Notes({ }: PropNotes) {
+
+    const { user } = useAuthenticateContext();
+
+    if (!user)
+        redirect("/login")
 
     const [openModal, setOpenModal] = useState(false)
 
@@ -61,7 +66,7 @@ export default function Notes({ notes }: PropNotes) {
                 <ButtonAddNote onClick={e => handleOpen()} />
             </div>
 
-            <ModalAddNote handleClose={handleClose} isOpen={openModal}/>
+            <ModalAddNote handleClose={handleClose} isOpen={openModal} />
         </div>
     );
 };

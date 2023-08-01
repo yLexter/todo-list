@@ -25,8 +25,6 @@ export default function TabWeek({ tasks }: IPropTabWeek) {
 
     const rows = Array.from(timesNonRepetating.entries())
 
-    console.log(rows)
-
     return (
         <TableContainer>
             <Table>

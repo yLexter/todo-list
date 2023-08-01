@@ -17,7 +17,7 @@ export default function ModalRoot({
 }: IPropModalRoot) {
 
     const { theme } = useAppThemeContext();
-
+    
     return (
         <Modal
             className='flex justify-center items-center'

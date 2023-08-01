@@ -1,20 +1,13 @@
-'use client'
-
 import React from "react";
-import { AppThemeProvider, AuthenticateProvider } from "@/contexts";
-import Home from "@/components/home/Home";
-import { OptionMenuProvider } from "@/contexts/OptionMenu";
+import Home from "./../components/home/Home"
+import LayoutProvider from "./LayoutProvider";
 
-export default function App() {
+export default function Page() {
 
     return (
-        <AppThemeProvider>
-            <OptionMenuProvider>
-                <AuthenticateProvider>
-                    <Home />
-                </AuthenticateProvider>
-            </OptionMenuProvider>
-        </AppThemeProvider>
+        <LayoutProvider>
+            <Home />
+        </LayoutProvider>
     )
 
 }

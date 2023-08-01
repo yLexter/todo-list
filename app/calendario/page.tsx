@@ -2,7 +2,7 @@
 
 import { Box, Button, IconButton, Tab, Tabs } from '@mui/material';
 import React, { useState } from 'react';
-import TitleOption from '../utils/TitleOption';
+import TitleOption from '../../components/utils/UI/TitleOption';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { ITask } from '@/tsUtils/interfaces';
@@ -10,10 +10,17 @@ import TabDay from './TabDay';
 import TabWeek from './TabWeek';
 import TabMonth from './TabMonth';
 import TabPanel from "./TabPanel"
+import { useAuthenticateContext } from '@/contexts';
+import { redirect } from 'next/navigation';
 
 interface IPropCalendar { }
 
-export default function Calendar({ }: IPropCalendar) {
+export default function Page({ }: IPropCalendar) {
+
+    const { user } = useAuthenticateContext();
+
+    if (!user)
+        redirect("/login")
 
     const [currentTab, setCurrentTab] = useState(1);
     const handleChange = (e: React.SyntheticEvent<Element, Event>, value: number): void => {

@@ -1,4 +1,7 @@
+'use client'
+
 import { IUser } from "@/tsUtils";
+import { redirect } from "next/navigation";
 import { ReactNode, createContext, useContext, useState } from "react";
 
 interface IAuthenticateContext {
@@ -19,6 +22,7 @@ export const AuthenticateProvider = ({ children }: { children: ReactNode }) => {
             tasks: [],
             notes: []
         })
+
     }
 
     const logout = () => {

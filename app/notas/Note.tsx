@@ -1,12 +1,11 @@
 import React from 'react';
-import { INote } from '../../../tsUtils/interfaces';
+import { INote } from '../../tsUtils/interfaces';
 import { Utils } from '@/tsUtils/classes';
 import { Typography, useTheme } from '@mui/material';
 
 interface IPropNotes {
     note: INote
 }
-
 
 export default function Note({ note }: IPropNotes) {
 

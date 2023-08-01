@@ -8,8 +8,8 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { z } from 'zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import CustomButton from '../utils/inputs/CustomButton';
-import CustomInput from '../utils/inputs/CustomInput';
+import CustomButton from '../../components/utils/inputs/CustomButton';
+import CustomInput from '../../components/utils/inputs/CustomInput';
 
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -17,19 +17,21 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import SocialButton from './SocialButton';
 import LockIcon from '@mui/icons-material/Lock';
 import { useAuthenticateContext } from '@/contexts';
+import { zodResolver } from "@hookform/resolvers/zod"
+import { redirect } from 'next/navigation';
 
 type IPropLoginScreen = {}
 
 const schema = z.object({
-    user: z.string().min(3, "Este campo precisa de 3 caracteres"),
-    password: z.string().min(3, "Este campo precisa de 3 caracteres")
+    user: z.string().min(1, "Este campo é obrigatório"),
+    password: z.string().min(1, "Este campo é obrigatório")
 })
 
 type FormProps = z.infer<typeof schema>
 
-export default function LoginScreen({ }: IPropLoginScreen) {
+export default function Page({ }: IPropLoginScreen) {
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormProps>()
+    const { register, handleSubmit, formState: { errors } } = useForm<FormProps>({ resolver: zodResolver(schema) })
     const [showPassword, setShowPassword] = useState(false)
     const { authenticateUser } = useAuthenticateContext()
 
@@ -39,7 +41,6 @@ export default function LoginScreen({ }: IPropLoginScreen) {
 
     const onSubmit: SubmitHandler<FormProps> = (data) => {
         authenticateUser();
-        console.log(data)
     }
 
     return (
@@ -53,7 +54,7 @@ export default function LoginScreen({ }: IPropLoginScreen) {
             <form onSubmit={handleSubmit(onSubmit)} className='h-auto w-auto flex flex-col gap-5'>
 
                 <TextField
-                    {...register("user", { required: "Este campo é obrigatório" })}
+                    {...register("user")}
                     placeholder="Digite seu usuário"
                     variant="standard"
                     error={!!errors.user?.message}
@@ -70,7 +71,7 @@ export default function LoginScreen({ }: IPropLoginScreen) {
                 <div className='w-auto'>
                     <TextField
                         sx={{ width: "100%" }}
-                        {...register("password", { required: "Este campo é obrigatório" })}
+                        {...register("password")}
                         type={showPassword ? "text" : "password"}
                         variant="standard"
                         placeholder="Digite sua senha"
