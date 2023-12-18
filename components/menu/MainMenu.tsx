@@ -15,9 +15,9 @@ export default function MainMenu({}: PropMainMenu) {
    return (
       <aside
          style={{ backgroundColor: theme.palette.background.default }}
-         className={twMerge("col-span-3 flex flex-col p-3 h-screen")}
+         className={twMerge("col-span-3 flex flex-col p-4 h-screen w-1/4")}
       >
-         <Header />
+         <Header theme={theme} />
          <Divider sx={{ marginBottom: "10px " }} />
          <TaskMenu />
          <Divider sx={{ marginBottom: "10px " }} />

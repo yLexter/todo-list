@@ -92,10 +92,7 @@ export default function LoginScreen() {
                   )}
                </div>
                <div className="flex justify-between text-gray-800 py-2">
-                  <p
-                     id="checkbox-remember"
-                     className="text-blue-500 cursor-pointer"
-                  >
+                  <p className="text-blue-500 cursor-pointer">
                      Esqueceu sua Senha?{" "}
                   </p>
                   <label
@@ -106,6 +103,7 @@ export default function LoginScreen() {
                         {...register("remember")}
                         className="mr-2"
                         type="checkbox"
+                        id="checkbox-remember"
                      />{" "}
                      Manter Conectado
                   </label>

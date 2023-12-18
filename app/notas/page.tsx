@@ -7,7 +7,7 @@ import TitleOption from "../../components/utils/UI/TitleOption";
 import AddNote from "./../../components/modals/ModalAddNote";
 import ButtonAddNote from "./ButtonAddNote";
 import ModalAddNote from "./../../components/modals/ModalAddNote";
-import { useAuthenticateContext } from "@/contexts";
+import { useAppThemeContext, useAuthenticateContext } from "@/contexts";
 import { redirect } from "next/navigation";
 import LayoutProvider from "../LayoutProvider";
 
@@ -15,6 +15,7 @@ interface PropNotes {}
 
 export default function Notes({}: PropNotes) {
    const { user } = useAuthenticateContext();
+   const { theme } = useAppThemeContext();
 
    if (!user) redirect("/login");
 
@@ -63,14 +64,20 @@ export default function Notes({}: PropNotes) {
 
    return (
       <LayoutProvider>
-         <div className="col-span-9">
+         <div
+            style={{ backgroundColor: theme.palette.background.paper }}
+            className="col-span-9 p-4"
+         >
             <TitleOption title="Anotações" />
 
-            <div className="flex flex-wrap gap-2 p-4">
+            <div className="grid grid-cols-6 gap-2 p-4">
                {examplesNotes.map((note) => (
-                  <Note key={note.id} note={note} />
+                  <Note className="col-span-2" key={note.id} note={note} />
                ))}
-               <ButtonAddNote onClick={(e) => handleOpen()} />
+               <ButtonAddNote
+                  className="col-span-2"
+                  onClick={(e) => handleOpen()}
+               />
             </div>
 
             <ModalAddNote handleClose={handleClose} isOpen={openModal} />

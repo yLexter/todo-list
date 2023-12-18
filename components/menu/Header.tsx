@@ -1,25 +1,30 @@
+import React, { useContext } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
+import { IconButton, Theme } from "@mui/material";
+import SearchBarMenu from "./SearchBarMenu";
+import { twJoin } from "tailwind-merge";
 
+interface PropHeader {
+   theme: Theme;
+}
 
-import React, { useContext } from 'react';
-import MenuIcon from "@mui/icons-material/Menu"
-import { IconButton, } from '@mui/material';
-import SearchBarMenu from './SearchBarMenu';
+export default function Header({ theme }: PropHeader) {
+   return (
+      <header className="h-1/6 mb-0.5">
+         <div className="flex items-center justify-between gap-5 mb-4">
+            <h1
+               style={{ color: theme.palette.text.primary }}
+               className={twJoin("font-bold tracking-wide text-lg")}
+            >
+               Menu
+            </h1>
 
-interface PropHeader { }
+            <IconButton color="inherit" aria-label="Menu">
+               <MenuIcon />
+            </IconButton>
+         </div>
 
-export default function Header({ }: PropHeader) {
-    return (
-        <header className='h-1/6 mb-0.5'>
-
-            <div className="flex items-center justify-between gap-5 mb-4" >
-                <h1 className="font-bold tracking-wide text-lg">Menu</h1>
-
-                <IconButton color="inherit" aria-label="Menu">
-                    <MenuIcon />
-                </IconButton>
-            </div>
-
-            <SearchBarMenu />
-        </header>
-    );
-};
+         <SearchBarMenu />
+      </header>
+   );
+}

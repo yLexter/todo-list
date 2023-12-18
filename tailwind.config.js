@@ -14,6 +14,11 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
 
+      padding: {
+        'spacing-page': "10%",
+        'spacing-menu': "5%"
+      },
+
       fontFamily: {
         cb: ["Roboto", "Helvetica", "Arial", "sans-serif"]
       }
