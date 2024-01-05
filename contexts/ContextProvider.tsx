@@ -1,18 +1,16 @@
-import React from 'react';
-import { AppThemeProvider } from './Theme';
-import { AuthenticateProvider } from './Authenticate';
+import React from "react";
+import { AppThemeProvider } from "./Theme";
+import { AuthenticateProvider } from "./Authenticate";
+import { SessionProvider } from "next-auth/react";
 
 type IPropContextProvider = {
-    children: React.ReactNode
-}
+   children: React.ReactNode;
+};
 
 export default function ContextProvider({ children }: IPropContextProvider) {
-
-    return (
-        <AppThemeProvider>
-            <AuthenticateProvider>
-                {children}
-            </AuthenticateProvider>
-        </AppThemeProvider>
-    );
-};
+   return (
+      <AppThemeProvider>
+         <SessionProvider>{children}</SessionProvider>
+      </AppThemeProvider>
+   );
+}

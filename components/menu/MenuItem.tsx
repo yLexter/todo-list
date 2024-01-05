@@ -1,7 +1,7 @@
 "use client";
 
 import { useAppThemeContext } from "@/contexts";
-import { TOptionsTheme } from "@/tsUtils";
+import { TOptionsTheme } from "@/entities";
 import {
    ListItemButton,
    ListItemIcon,

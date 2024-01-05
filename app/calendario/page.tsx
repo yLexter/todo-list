@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import TitleOption from "../../components/utils/UI/TitleOption";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import { ITask } from "@/tsUtils/interfaces";
+import { ITask } from "@/entities/interfaces";
 import TabDay from "./TabDay";
 import TabWeek from "./TabWeek";
 import TabMonth from "./TabMonth";

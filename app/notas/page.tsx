@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { INote } from "./../../tsUtils";
+import { INote } from "../../entities";
 import Note from "./Note";
 import TitleOption from "../../components/utils/UI/TitleOption";
 import AddNote from "./../../components/modals/ModalAddNote";

@@ -1,6 +1,6 @@
 import React from "react";
-import { INote } from "../../tsUtils/interfaces";
-import { Utils } from "@/tsUtils/classes";
+import { INote } from "../../entities/interfaces";
+import { Utils } from "@/entities/classes";
 import { Typography, useTheme } from "@mui/material";
 import { twMerge } from "tailwind-merge";
 

@@ -17,7 +17,6 @@ export default function TaskMenu({}: PropTaskMenu) {
             label="Calendário"
             Icon={CalendarMonthIcon}
          />
-         <MenuItem href={"/hoje"} label="Hoje" Icon={FormatListNumberedIcon} />
       </ListItems>
    );
 }

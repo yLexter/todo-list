@@ -1,6 +1,6 @@
 "use client";
 
-import { IUser } from "@/tsUtils";
+import { IUser } from "@/entities";
 import { redirect } from "next/navigation";
 import { ReactNode, createContext, useContext, useState } from "react";
 

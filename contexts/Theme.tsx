@@ -1,7 +1,7 @@
 "use client";
 
 import { DarkTheme, LigthTheme } from "@/themes";
-import { TOptionsTheme } from "@/tsUtils";
+import { TOptionsTheme } from "@/entities";
 import { Theme, ThemeProvider } from "@mui/material";
 import {
    createContext,
