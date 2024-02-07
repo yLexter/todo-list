@@ -1,7 +1,6 @@
 import React from "react";
 import { INote } from "../../entities/interfaces";
 import { Utils } from "@/entities/classes";
-import { Typography, useTheme } from "@mui/material";
 import { twMerge } from "tailwind-merge";
 
 interface IPropNotes {
@@ -10,8 +9,6 @@ interface IPropNotes {
 }
 
 export default function Note({ note, className }: IPropNotes) {
-   const theme = useTheme();
-
    return (
       <div
          className={twMerge("rounded-md p-5 shadow-lg", className)}
@@ -21,12 +18,9 @@ export default function Note({ note, className }: IPropNotes) {
       >
          <h3 className="capitalize font-bold mb-3 text-2xl">{note.title}</h3>
 
-         <Typography
-            color={theme.palette.text.primary}
-            className="leading-tight text-justify font-normal"
-         >
+         <h5 className="leading-tight text-justify font-normal">
             {note.description}{" "}
-         </Typography>
+         </h5>
       </div>
    );
 }

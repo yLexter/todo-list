@@ -1,15 +1,18 @@
 import ContextProvider from "@/contexts/ContextProvider";
-import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import LayoutProvider from "./LayoutProvider";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Inter as FontSans } from "next/font/google";
+import { twMerge } from "tailwind-merge";
+import "./globals.css";
 
 export const metadata: Metadata = {
    title: "ToDo List",
    description: "O melhor gerenciador de tarefas",
 };
+
+export const fontSans = FontSans({
+   subsets: ["latin"],
+   variable: "--font-sans",
+});
 
 export default function RootLayout({
    children,
@@ -18,7 +21,7 @@ export default function RootLayout({
 }) {
    return (
       <html lang="en">
-         <body className="w-screen h-screen">
+         <body className={twMerge("w-screen h-screen", fontSans.variable)}>
             <ContextProvider>{children}</ContextProvider>
          </body>
       </html>

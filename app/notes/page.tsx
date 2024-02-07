@@ -4,31 +4,15 @@ import React, { useState } from "react";
 import { INote } from "../../entities";
 import Note from "./Note";
 import TitleOption from "../../components/utils/UI/TitleOption";
-import AddNote from "./../../components/modals/ModalAddNote";
+import AddNote from "../../components/modals/ModalAddNote";
 import ButtonAddNote from "./ButtonAddNote";
-import ModalAddNote from "./../../components/modals/ModalAddNote";
-import { useAppThemeContext, useAuthenticateContext } from "@/contexts";
+import ModalAddNote from "../../components/modals/ModalAddNote";
 import { redirect } from "next/navigation";
 import LayoutProvider from "../LayoutProvider";
 
 interface PropNotes {}
 
 export default function Notes({}: PropNotes) {
-   const { user } = useAuthenticateContext();
-   const { theme } = useAppThemeContext();
-
-   if (!user) redirect("/login");
-
-   const [openModal, setOpenModal] = useState(false);
-
-   const handleClose = () => {
-      setOpenModal(false);
-   };
-
-   const handleOpen = () => {
-      setOpenModal(true);
-   };
-
    const examplesNotes: INote[] = [
       {
          title: "sexo",
@@ -64,23 +48,15 @@ export default function Notes({}: PropNotes) {
 
    return (
       <LayoutProvider>
-         <div
-            style={{ backgroundColor: theme.palette.background.paper }}
-            className="col-span-9 p-4"
-         >
+         <div className="col-span-9 p-4">
             <TitleOption title="Anotações" />
 
             <div className="grid grid-cols-6 gap-2 p-4">
                {examplesNotes.map((note) => (
                   <Note className="col-span-2" key={note.id} note={note} />
                ))}
-               <ButtonAddNote
-                  className="col-span-2"
-                  onClick={(e) => handleOpen()}
-               />
+               <ButtonAddNote className="col-span-2" />
             </div>
-
-            <ModalAddNote handleClose={handleClose} isOpen={openModal} />
          </div>
       </LayoutProvider>
    );

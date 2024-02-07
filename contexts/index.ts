@@ -1,3 +1,2 @@
-export * from "./Theme"
-export * from "./OptionMenu"
-export * from "./Authenticate"
+export * from "./Theme";
+export * from "./OptionMenu";

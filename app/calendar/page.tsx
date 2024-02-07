@@ -1,34 +1,18 @@
-"use client";
-
-import { Box, Button, IconButton, Tab, Tabs } from "@mui/material";
 import React, { useState } from "react";
 import TitleOption from "../../components/utils/UI/TitleOption";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { ITask } from "@/entities/interfaces";
 import TabDay from "./TabDay";
 import TabWeek from "./TabWeek";
 import TabMonth from "./TabMonth";
-import TabPanel from "./TabPanel";
-import { useAuthenticateContext } from "@/contexts";
-import { redirect } from "next/navigation";
 import LayoutProvider from "../LayoutProvider";
+import { Button } from "@/components/ui/button";
+import { MdNavigateNext } from "react-icons/md";
+import { MdNavigateBefore } from "react-icons/md";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface IPropCalendar {}
 
 export default function Page({}: IPropCalendar) {
-   const { user } = useAuthenticateContext();
-
-   if (!user) redirect("/login");
-
-   const [currentTab, setCurrentTab] = useState(1);
-   const handleChange = (
-      e: React.SyntheticEvent<Element, Event>,
-      value: number
-   ): void => {
-      setCurrentTab(value);
-   };
-
    const todayDate = new Date();
    const dateToString = todayDate.toLocaleString("pt-BR", {
       day: "2-digit",
@@ -63,40 +47,39 @@ export default function Page({}: IPropCalendar) {
 
    return (
       <LayoutProvider>
-         <Box className="col-span-9 w-full p-5">
+         <div className="col-span-9 w-full p-5">
             <div className="flex justify-between gap-2 mb-5">
                <TitleOption title={dateToString} />
                <Button>Adicionar Evento</Button>
             </div>
 
             <div className="flex justify-between items-center mb-6">
-               <Tabs onChange={handleChange} value={currentTab}>
-                  <Tab label="Dia" value={1} />
-                  <Tab label="Semana" value={2} />
-                  <Tab label="Mês" value={3} />
+               <Tabs defaultValue="week" className="w-[400px]">
+                  <TabsList>
+                     <TabsTrigger value="day">Dia</TabsTrigger>
+                     <TabsTrigger value="week">Semana</TabsTrigger>
+                     <TabsTrigger value="month">Mês</TabsTrigger>
+                  </TabsList>
+
+                  <TabsContent value="day">
+                     <TabDay tasks={sortedTasks} />
+                  </TabsContent>
+
+                  <TabsContent value="week">
+                     <TabWeek tasks={sortedTasks} />
+                  </TabsContent>
+
+                  <TabsContent value="month">
+                     <TabMonth tasks={sortedTasks} />{" "}
+                  </TabsContent>
                </Tabs>
 
                <div className="flex gap-1">
-                  <IconButton size="large">
-                     <NavigateBeforeIcon fontSize="inherit" />
-                  </IconButton>
-
-                  <IconButton size="large">
-                     <NavigateNextIcon fontSize="inherit" />
-                  </IconButton>
+                  <MdNavigateBefore fontSize="inherit" />
+                  <MdNavigateNext fontSize="inherit" />
                </div>
             </div>
-
-            <TabPanel value={currentTab} index={1}>
-               <TabDay tasks={sortedTasks} />
-            </TabPanel>
-            <TabPanel value={currentTab} index={2}>
-               <TabWeek tasks={sortedTasks} />
-            </TabPanel>
-            <TabPanel value={currentTab} index={3}>
-               <TabMonth tasks={sortedTasks} />
-            </TabPanel>
-         </Box>
+         </div>
       </LayoutProvider>
    );
 }

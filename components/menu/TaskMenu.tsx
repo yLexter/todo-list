@@ -1,21 +1,19 @@
 import React from "react";
 import MenuItem from "./MenuItem";
-import StickyNote2Icon from "@mui/icons-material/StickyNote2";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
 import ListItems from "./ListItems";
-import { useAppThemeContext } from "@/contexts";
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { FaRegStickyNote } from "react-icons/fa";
 
 interface PropTaskMenu {}
 
 export default function TaskMenu({}: PropTaskMenu) {
    return (
       <ListItems text="Tarefas">
-         <MenuItem href={"/notas"} label="Notas" Icon={StickyNote2Icon} />
+         <MenuItem href={"/notas"} label="Notas" Icon={FaRegStickyNote} />
          <MenuItem
             href={"/calendario"}
             label="Calendário"
-            Icon={CalendarMonthIcon}
+            Icon={FaRegCalendarAlt}
          />
       </ListItems>
    );

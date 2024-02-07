@@ -1,6 +1,5 @@
 import { Utils } from "@/entities/classes";
 import { ITask } from "@/entities/interfaces";
-import { Box } from "@mui/material";
 import React from "react";
 
 interface IPropTabDay {
@@ -9,7 +8,7 @@ interface IPropTabDay {
 
 const TaskComponent = ({ task }: { task: ITask }) => {
    return (
-      <Box className="h-24 w-11/12 flex gap-2 mb-4">
+      <div className="h-24 w-11/12 flex gap-2 mb-4">
          <div className="w-1/12 self-center">
             {Utils.getTimeFormatted(task.date)}
          </div>
@@ -20,7 +19,7 @@ const TaskComponent = ({ task }: { task: ITask }) => {
          >
             <p>{task.content}</p>
          </div>
-      </Box>
+      </div>
    );
 };
 

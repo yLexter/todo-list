@@ -1,30 +1,10 @@
 "use client";
 
-import {
-   Button,
-   Checkbox,
-   Divider,
-   FormControlLabel,
-   IconButton,
-   InputAdornment,
-   TextField,
-   Typography,
-} from "@mui/material";
 import React, { useState } from "react";
-
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
-import CustomButton from "../../components/utils/inputs/CustomButton";
-import GoogleIcon from "@mui/icons-material/Google";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import SocialButton from "./SocialButton";
-import LockIcon from "@mui/icons-material/Lock";
-import { useAuthenticateContext } from "@/contexts";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "next-auth/react";
 
 type IPropPageLogin = {};
 
@@ -37,22 +17,19 @@ const schema = z.object({
 type FormProps = z.infer<typeof schema>;
 
 export default function LoginScreen() {
-   const { authenticateUser } = useAuthenticateContext();
-
    const {
       register,
       handleSubmit,
       formState: { errors },
    } = useForm<FormProps>({ resolver: zodResolver(schema) });
 
-   const [showPassword, setShowPassword] = useState(false);
-
-   const handleShowPassword = () => {
-      setShowPassword((oldShowPassword) => !oldShowPassword);
-   };
-
-   const onSubmit: SubmitHandler<FormProps> = (data) => {
-      authenticateUser();
+   const onSubmit: SubmitHandler<FormProps> = async (data) => {
+      await signIn("credentials", {
+         username: data.username,
+         password: data.password,
+         redirect: true,
+         callbackUrl: "/",
+      });
    };
 
    return (

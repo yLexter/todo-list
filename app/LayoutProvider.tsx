@@ -1,8 +1,5 @@
-"use client";
-
-import LoginScreen from "@/app/login/page";
+import LoginScreen from "@/app/auth/signIn/page";
 import MainMenu from "@/components/menu/MainMenu";
-import { useAuthenticateContext } from "@/contexts";
 import React from "react";
 import { redirect } from "next/navigation";
 

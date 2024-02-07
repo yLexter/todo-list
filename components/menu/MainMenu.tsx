@@ -3,26 +3,22 @@ import Header from "./Header";
 import TaskMenu from "./TaskMenu";
 import Settings from "./Settings";
 import Lists from "./Lists";
-import { Divider, useTheme } from "@mui/material";
-import { useAppThemeContext } from "@/contexts";
 import { twMerge } from "tailwind-merge";
+import { Separator } from "../ui/separator";
 
 interface PropMainMenu {}
 
 export default function MainMenu({}: PropMainMenu) {
-   const { theme } = useAppThemeContext();
-
    return (
-      <aside
-         style={{ backgroundColor: theme.palette.background.default }}
-         className={twMerge("col-span-3 flex flex-col p-4 h-screen w-1/4")}
-      >
-         <Header theme={theme} />
-         <Divider sx={{ marginBottom: "10px " }} />
+      <aside className={twMerge("col-span-3 flex flex-col p-4 h-screen w-1/4")}>
+         <Header />
+         <Separator className="mb-4" />
+
          <TaskMenu />
-         <Divider sx={{ marginBottom: "10px " }} />
+         <Separator className="mb-4" />
+
          <Lists />
-         <Divider sx={{ marginBottom: "10px " }} />
+         <Separator className="mb-4" />
          <Settings />
       </aside>
    );

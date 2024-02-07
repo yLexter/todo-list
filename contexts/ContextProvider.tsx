@@ -1,6 +1,6 @@
+"use client";
+
 import React from "react";
-import { AppThemeProvider } from "./Theme";
-import { AuthenticateProvider } from "./Authenticate";
 import { SessionProvider } from "next-auth/react";
 
 type IPropContextProvider = {
@@ -8,9 +8,5 @@ type IPropContextProvider = {
 };
 
 export default function ContextProvider({ children }: IPropContextProvider) {
-   return (
-      <AppThemeProvider>
-         <SessionProvider>{children}</SessionProvider>
-      </AppThemeProvider>
-   );
+   return <SessionProvider>{children}</SessionProvider>;
 }

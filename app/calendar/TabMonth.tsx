@@ -1,13 +1,5 @@
 import { ITask } from "@/entities";
 import { Utils } from "@/entities/classes";
-import {
-   Table,
-   TableBody,
-   TableCell,
-   TableContainer,
-   TableHead,
-   TableRow,
-} from "@mui/material";
 import React from "react";
 
 type IPropTabWeek = {
@@ -33,40 +25,36 @@ const TableBodyMonth = ({ tasks }: IPropTabWeek) => {
    let currentDay = 1;
 
    return (
-      <TableBody>
-         {[...Array(totalLines)].map((ignored, column) => (
-            <TableRow>
-               {[...Array(totalDayOfWeek)].map((ignored2, day) => {
+      <tbody>
+         {Array.from({ length: totalLines }).map((ignored, column) => (
+            <tr>
+               {Array.from({ length: totalDayOfWeek }).map((ignored2, day) => {
                   if (
                      (column === 0 && day < dayOfFirstDayDate - 1) ||
                      currentDay > informationMonth.total
                   )
-                     return <TableCell></TableCell>;
+                     return <th></th>;
 
-                  return <TableCell>{currentDay++}</TableCell>;
+                  return <th>{currentDay++}</th>;
                })}
-            </TableRow>
+            </tr>
          ))}
-      </TableBody>
+      </tbody>
    );
 };
 
 export default function TabWeek({ tasks }: IPropTabWeek) {
    return (
-      <TableContainer>
-         <Table>
-            <TableHead>
-               <TableRow>
-                  {Utils.daysOfWeek.map((day) => (
-                     <TableCell key={`HeadTableMonth-${day.name}`}>
-                        {day.name}
-                     </TableCell>
-                  ))}
-               </TableRow>
-            </TableHead>
+      <table>
+         <thead>
+            <tr>
+               {Utils.daysOfWeek.map((day) => (
+                  <th key={`HeadTableMonth-${day.name}`}>{day.name}</th>
+               ))}
+            </tr>
+         </thead>
 
-            <TableBodyMonth tasks={tasks} />
-         </Table>
-      </TableContainer>
+         <TableBodyMonth tasks={tasks} />
+      </table>
    );
 }

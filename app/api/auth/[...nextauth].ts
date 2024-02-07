@@ -19,7 +19,7 @@ export default NextAuth({
          },
 
          async authorize(credentials, req) {
-            const res = await fetch("http://localhost:3000/auth/login", {
+            const res = await fetch("http://localhost:3000/auth/signIn", {
                method: "POST",
                body: JSON.stringify({
                   username: credentials?.username,
@@ -33,4 +33,8 @@ export default NextAuth({
          },
       }),
    ],
+
+   pages: {
+      signIn: "/auth/signIn",
+   },
 });
