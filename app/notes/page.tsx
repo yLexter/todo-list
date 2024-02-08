@@ -5,10 +5,10 @@ import { INote } from "../../entities";
 import Note from "./Note";
 import TitleOption from "../../components/utils/UI/TitleOption";
 import AddNote from "../../components/modals/ModalAddNote";
-import ButtonAddNote from "./ButtonAddNote";
 import ModalAddNote from "../../components/modals/ModalAddNote";
 import { redirect } from "next/navigation";
 import LayoutProvider from "../LayoutProvider";
+import { IoIosAdd } from "react-icons/io";
 
 interface PropNotes {}
 
@@ -48,15 +48,15 @@ export default function Notes({}: PropNotes) {
 
    return (
       <LayoutProvider>
-         <div className="col-span-9 p-4">
-            <TitleOption title="Anotações" />
+         <TitleOption title="Anotações" />
 
-            <div className="grid grid-cols-6 gap-2 p-4">
-               {examplesNotes.map((note) => (
-                  <Note className="col-span-2" key={note.id} note={note} />
-               ))}
-               <ButtonAddNote className="col-span-2" />
-            </div>
+         <div className="grid grid-cols-6 gap-2 p-4">
+            {examplesNotes.map((note) => (
+               <Note className="col-span-2" key={note.id} note={note} />
+            ))}
+            <ModalAddNote classTigger="flex items-center justify-center col-span-2">
+               <IoIosAdd className="w-2/3 h-2/3" />
+            </ModalAddNote>
          </div>
       </LayoutProvider>
    );

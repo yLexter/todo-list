@@ -46,40 +46,31 @@ export default function Page({}: IPropCalendar) {
    });
 
    return (
-      <LayoutProvider>
-         <div className="col-span-9 w-full p-5">
-            <div className="flex justify-between gap-2 mb-5">
-               <TitleOption title={dateToString} />
-               <Button>Adicionar Evento</Button>
-            </div>
-
-            <div className="flex justify-between items-center mb-6">
-               <Tabs defaultValue="week" className="w-[400px]">
-                  <TabsList>
-                     <TabsTrigger value="day">Dia</TabsTrigger>
-                     <TabsTrigger value="week">Semana</TabsTrigger>
-                     <TabsTrigger value="month">Mês</TabsTrigger>
-                  </TabsList>
-
-                  <TabsContent value="day">
-                     <TabDay tasks={sortedTasks} />
-                  </TabsContent>
-
-                  <TabsContent value="week">
-                     <TabWeek tasks={sortedTasks} />
-                  </TabsContent>
-
-                  <TabsContent value="month">
-                     <TabMonth tasks={sortedTasks} />{" "}
-                  </TabsContent>
-               </Tabs>
-
-               <div className="flex gap-1">
-                  <MdNavigateBefore fontSize="inherit" />
-                  <MdNavigateNext fontSize="inherit" />
-               </div>
-            </div>
+      <LayoutProvider className="px-10 pt-5 bg-gray-300/70">
+         <div className="flex justify-between items-center gap-2 mb-5">
+            <TitleOption title={dateToString} />
+            <Button>Adicionar Evento</Button>
          </div>
+
+         <Tabs defaultValue="day" className="w-full">
+            <TabsList>
+               <TabsTrigger value="day">Dia</TabsTrigger>
+               <TabsTrigger value="week">Semana</TabsTrigger>
+               <TabsTrigger value="month">Mês</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="day">
+               <TabDay tasks={sortedTasks} />
+            </TabsContent>
+
+            <TabsContent value="week">
+               <TabWeek tasks={sortedTasks} />
+            </TabsContent>
+
+            <TabsContent value="month">
+               <TabMonth tasks={sortedTasks} />{" "}
+            </TabsContent>
+         </Tabs>
       </LayoutProvider>
    );
 }

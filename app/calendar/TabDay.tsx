@@ -8,10 +8,8 @@ interface IPropTabDay {
 
 const TaskComponent = ({ task }: { task: ITask }) => {
    return (
-      <div className="h-24 w-11/12 flex gap-2 mb-4">
-         <div className="w-1/12 self-center">
-            {Utils.getTimeFormatted(task.date)}
-         </div>
+      <div className="flex justify-between items-center mb-4">
+         <div className="self-center">{Utils.getTimeFormatted(task.date)}</div>
 
          <div
             style={{ backgroundColor: Utils.getRandomColor() }}
@@ -24,5 +22,11 @@ const TaskComponent = ({ task }: { task: ITask }) => {
 };
 
 export default function TabDay({ tasks }: IPropTabDay) {
-   return tasks.map((task) => <TaskComponent key={task.id} task={task} />);
+   return (
+      <>
+         {tasks.map((task) => (
+            <TaskComponent key={task.id} task={task} />
+         ))}
+      </>
+   );
 }

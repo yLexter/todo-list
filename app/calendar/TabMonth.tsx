@@ -33,9 +33,9 @@ const TableBodyMonth = ({ tasks }: IPropTabWeek) => {
                      (column === 0 && day < dayOfFirstDayDate - 1) ||
                      currentDay > informationMonth.total
                   )
-                     return <th></th>;
+                     return <th className="w-auto h-24"></th>;
 
-                  return <th>{currentDay++}</th>;
+                  return <th className="w-auto h-24">{currentDay++}</th>;
                })}
             </tr>
          ))}
@@ -45,7 +45,7 @@ const TableBodyMonth = ({ tasks }: IPropTabWeek) => {
 
 export default function TabWeek({ tasks }: IPropTabWeek) {
    return (
-      <table>
+      <table className="w-full">
          <thead>
             <tr>
                {Utils.daysOfWeek.map((day) => (

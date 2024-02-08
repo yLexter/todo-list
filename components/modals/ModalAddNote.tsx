@@ -1,40 +1,60 @@
 import React from "react";
+import {
+   Dialog,
+   DialogContent,
+   DialogDescription,
+   DialogFooter,
+   DialogHeader,
+   DialogTitle,
+   DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 type IPropAddNote = {
-   isOpen: boolean;
-   handleClose: () => void;
+   children: React.ReactNode;
+   classTigger?: string;
 };
 
-export default function ModalAddNote({ isOpen, handleClose }: IPropAddNote) {
+export default function ModalAddNote({ children, classTigger }: IPropAddNote) {
    return (
-      <div className="flex flex-col gap-7 p-4">
-         <div className="flex flex-col">
-            <label htmlFor="titulo" className="text-gray-600 mb-2">
-               Título
-            </label>
-         </div>
+      <>
+         <Dialog>
+            <DialogTrigger className={classTigger}>{children}</DialogTrigger>
+            <DialogContent>
+               <DialogHeader>
+                  <DialogTitle>Adicionar uma Nota</DialogTitle>
+               </DialogHeader>
 
-         <div className="flex flex-col">
-            <label htmlFor="descricao" className="text-gray-600 mb-2">
-               Descrição
-            </label>
-         </div>
+               <form action="">
+                  <div className="flex flex-col gap-y-2 mb-4">
+                     <Label htmlFor="title">Título</Label>
+                     <Input id="titçe" />
+                  </div>
+                  <div className="flex flex-col gap-y-2 mb-4">
+                     <Label htmlFor="description">Descrição</Label>
+                     <Input id="description" />
+                  </div>
+                  <div className="flex flex-col gap-y-2 mb-4">
+                     <Label htmlFor="date">Data</Label>
+                     <Input id="date" type="date" />
+                  </div>
+                  <div className="flex flex-col gap-y-2 mb-4">
+                     <Label htmlFor="schedule">Horário</Label>
+                     <Input id="schedule" type="time" />
+                  </div>
 
-         <div className="flex gap-20">
-            <div className="flex flex-col">
-               <label htmlFor="data" className="text-gray-600 mb-2">
-                  Data
-               </label>
-            </div>
+                  <DialogFooter>
+                     <DialogTrigger asChild>
+                        <Button variant="outline">Cancelar</Button>
+                     </DialogTrigger>
 
-            <div className="flex flex-col">
-               <label htmlFor="hora" className="text-gray-600 mb-2">
-                  Horário
-               </label>
-            </div>
-         </div>
-
-         <div className="flex justify-end gap-2 mt-4"></div>
-      </div>
+                     <Button type="submit">Salvar</Button>
+                  </DialogFooter>
+               </form>
+            </DialogContent>
+         </Dialog>
+      </>
    );
 }
