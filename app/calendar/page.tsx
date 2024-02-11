@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TitleOption from "../../components/utils/UI/TitleOption";
 import { ITask } from "@/entities/interfaces";
 import TabDay from "./TabDay";
@@ -6,9 +6,8 @@ import TabWeek from "./TabWeek";
 import TabMonth from "./TabMonth";
 import LayoutProvider from "../LayoutProvider";
 import { Button } from "@/components/ui/button";
-import { MdNavigateNext } from "react-icons/md";
-import { MdNavigateBefore } from "react-icons/md";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ModallAddTask from "@/components/modals/ModalAddTask";
 
 interface IPropCalendar {}
 
@@ -49,7 +48,10 @@ export default function Page({}: IPropCalendar) {
       <LayoutProvider className="px-10 pt-5 bg-gray-300/70">
          <div className="flex justify-between items-center gap-2 mb-5">
             <TitleOption title={dateToString} />
-            <Button>Adicionar Evento</Button>
+
+            <ModallAddTask>
+               <Button>Adicionar Evento</Button>
+            </ModallAddTask>
          </div>
 
          <Tabs defaultValue="day" className="w-full">
