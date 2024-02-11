@@ -18,27 +18,35 @@ export interface IUser {
 }
 
 export interface IUserRepository {
-   getUsers(): IUser[];
-   getUserById(id: string): IUser | undefined;
-   createUser(user: IUser): void;
-   uptadeUser(idOldUser: string, newUser: IUser): void;
-   deleteUser(id: string): void;
+   getUsers(): Promise<IUser[]>;
+   getUserById(idUser: string): Promise<IUser | undefined>;
+   createUser(user: IUser): Promise<void>;
+   uptadeUser(idOldUser: string, newUser: IUser): Promise<void>;
+   deleteUser(idUser: string): Promise<void>;
 }
 
 export interface ITaskManager {
-   createTask(task: ITask): void;
-   getTaskById(id: string): ITask | undefined;
-   getAllTasks(): ITask[];
-   updateTask(id: string, updatedTask: ITask): void;
-   deleteTask(id: string): void;
+   createTask(idUser: string, task: ITask): Promise<void>;
+   getTaskById(idUser: string, idTask: string): Promise<ITask | undefined>;
+   getAllTasks(idUser: string): ITask[];
+   updateTask(
+      idUser: string,
+      idTask: string,
+      updatedTask: ITask
+   ): Promise<void>;
+   deleteTask(idUser: string, idTask: string): Promise<void>;
 }
 
 export interface INoteManager {
-   createNote(note: INote): void;
-   getNoteById(id: string): INote | undefined;
-   getAllNotes(): INote[];
-   updateNote(id: string, updatedNote: INote): void;
-   deleteNote(id: string): void;
+   createNote(idUser: string, note: INote): Promise<void>;
+   getNoteById(idUser: string, idNote: string): Promise<INote | undefined>;
+   getAllNotes(idUser: string): Promise<INote[]>;
+   updateNote(
+      idUser: string,
+      idNote: string,
+      updatedNote: INote
+   ): Promise<void>;
+   deleteNote(idUser: string, idNote: string): Promise<void>;
 }
 
 export interface IDataRepository {
