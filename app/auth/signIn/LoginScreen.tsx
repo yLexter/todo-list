@@ -5,6 +5,9 @@ import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 type IPropPageLogin = {};
 
@@ -43,9 +46,10 @@ export default function LoginScreen() {
                   Login
                </h2>
                <div className="flex flex-col text-gray-800 py-2">
-                  <label htmlFor="username">Usuário</label>
-                  <input
+                  <Label htmlFor="username">Usuário</Label>
+                  <Input
                      {...register("username")}
+                     id="username"
                      className={`rounded-lg bg-gray-200 mt-2 p-2 focus:border-blue-500 ${
                         errors.username ? "border-red-500" : ""
                      } focus:bg-white focus:outline-none`}
@@ -56,9 +60,10 @@ export default function LoginScreen() {
                   )}
                </div>
                <div className="flex flex-col text-gray-800 py-2">
-                  <label htmlFor="password">Senha</label>
-                  <input
+                  <Label htmlFor="password">Senha</Label>
+                  <Input
                      {...register("password")}
+                     id="password"
                      className={`p-2 rounded-lg bg-gray-200 mt-2 focus:border-blue-500 ${
                         errors.password ? "border-red-500" : ""
                      } focus:bg-white focus:outline-none`}
@@ -72,25 +77,20 @@ export default function LoginScreen() {
                   <p className="text-blue-500 cursor-pointer">
                      Esqueceu sua Senha?{" "}
                   </p>
-                  <label
+                  <Label
                      htmlFor="checkbox-remember"
                      className="flex items-center"
                   >
-                     <input
+                     <Input
                         {...register("remember")}
                         className="mr-2"
                         type="checkbox"
                         id="checkbox-remember"
                      />{" "}
                      Manter Conectado
-                  </label>
+                  </Label>
                </div>
-               <button
-                  type="submit"
-                  className="w-full my-5 py-2 bg-teal-500 shadow-lg hover:opacity-95 text-white font-semibold rounded-lg"
-               >
-                  Login
-               </button>
+               <Button type="submit">Login</Button>
             </form>
          </div>
       </div>

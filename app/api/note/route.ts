@@ -1,4 +1,4 @@
-import { repository } from "@/app/backend";
+import { repository } from "@/app/api/backend";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export async function GET(req: NextApiRequest, res: NextApiResponse) {

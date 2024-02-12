@@ -1,4 +1,4 @@
-import { Utils } from "@/entities/classes";
+import { global } from "@/entities/classes";
 import { ITask } from "@/entities/interfaces";
 import React from "react";
 
@@ -8,7 +8,7 @@ interface IPropTabWeek {
 
 export default function TabWeek({ tasks }: IPropTabWeek) {
    const timesNonRepetating = tasks.reduce((acc, task) => {
-      const time = Utils.getTimeFormatted(task.date);
+      const time = global.utils.getTimeFormatted(task.date);
 
       if (acc.has(time)) {
          acc.get(time)?.push(task);
@@ -27,7 +27,7 @@ export default function TabWeek({ tasks }: IPropTabWeek) {
             <thead>
                <tr>
                   <th></th>
-                  {Utils.daysOfWeek.map((day) => (
+                  {global.utils.daysOfWeek.map((day) => (
                      <th key={`HeadTable-${day.name}`}>{day.name}</th>
                   ))}
                </tr>
@@ -38,14 +38,15 @@ export default function TabWeek({ tasks }: IPropTabWeek) {
                   <tr key={`TimeTable-${time}`}>
                      <th>{time}</th>
 
-                     {Utils.daysOfWeek.map(({ name, day }) => {
+                     {global.utils.daysOfWeek.map(({ name, day }) => {
                         return tasks.map((task) => {
                            if (task.date.getDay() === day)
                               return (
                                  <th
                                     className="w-24 h-24"
                                     style={{
-                                       backgroundColor: Utils.getRandomColor(),
+                                       backgroundColor:
+                                          global.utils.getRandomColor(),
                                     }}
                                  >
                                     {task.content}

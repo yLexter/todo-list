@@ -1,3 +1,4 @@
+import { global } from "@/entities";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -19,7 +20,7 @@ export default NextAuth({
          },
 
          async authorize(credentials, req) {
-            const res = await fetch("http://localhost:3000/auth/signIn", {
+            const res = await fetch(global.constants.routesApi.signIn, {
                method: "POST",
                body: JSON.stringify({
                   username: credentials?.username,

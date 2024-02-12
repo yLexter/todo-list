@@ -1,5 +1,5 @@
 import { ITask } from "@/entities";
-import { Utils } from "@/entities/classes";
+import { global } from "@/entities/classes";
 import React from "react";
 
 type IPropTabWeek = {
@@ -15,7 +15,7 @@ const TableBodyMonth = ({ tasks }: IPropTabWeek) => {
       1
    );
    const dayOfFirstDayDate = firstDayDate.getDay();
-   const informationMonth = Utils.getMonthOfYear(
+   const informationMonth = global.utils.getMonthOfYear(
       currentDate.getFullYear(),
       currentDate.getMonth()
    );
@@ -48,7 +48,7 @@ export default function TabWeek({ tasks }: IPropTabWeek) {
       <table className="w-full">
          <thead>
             <tr>
-               {Utils.daysOfWeek.map((day) => (
+               {global.utils.daysOfWeek.map((day) => (
                   <th key={`HeadTableMonth-${day.name}`}>{day.name}</th>
                ))}
             </tr>

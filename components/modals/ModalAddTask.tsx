@@ -9,13 +9,13 @@ import { Button } from "../ui/button";
 import {
    Dialog,
    DialogContent,
-   DialogDescription,
    DialogFooter,
    DialogHeader,
    DialogTitle,
    DialogTrigger,
 } from "@/components/ui/dialog";
 import React from "react";
+import { global } from "@/entities";
 
 const schema = z.object({
    description: z.string().nonempty("A descrição é obrigatória."),
@@ -49,8 +49,14 @@ export default function ModalAddTask({ className, children }: TModalAddTask) {
       resolver: zodResolver(schema),
    });
 
-   const onSubmit = (data: TTaskSchema) => {
-      console.log(data);
+   const onSubmit = async (data: TTaskSchema) => {
+      fetch(global.constants.routesApi.task, {
+         method: "POST",
+         body: JSON.stringify({
+            id: "?",
+            task: data,
+         }),
+      });
    };
 
    return (
@@ -66,13 +72,19 @@ export default function ModalAddTask({ className, children }: TModalAddTask) {
                   <Label htmlFor="description">Descrição</Label>
                   <Input id="description" {...register("description")} />
                   {errors.description && (
-                     <span>{errors.description.message}</span>
+                     <span className="text-sm text-red-500">
+                        {errors.description.message}
+                     </span>
                   )}
                </div>
                <div className="flex flex-col gap-y-2 mb-4">
                   <Label htmlFor="time">Horário</Label>
                   <Input id="time" type="time" {...register("time")} />
-                  {errors.time && <span>{errors.time.message}</span>}
+                  {errors.time && (
+                     <span className="text-sm text-red-500">
+                        {errors.time.message}
+                     </span>
+                  )}
                </div>
 
                <div className="flex flex-col gap-y-2 mb-4">
@@ -90,7 +102,11 @@ export default function ModalAddTask({ className, children }: TModalAddTask) {
                      <option value="Sábado">Sábado</option>
                      <option value="Domingo">Domingo</option>
                   </select>
-                  {errors.dayOfWeek && <span>{errors.dayOfWeek.message}</span>}
+                  {errors.dayOfWeek && (
+                     <span className="text-sm text-red-500">
+                        {errors.dayOfWeek.message}
+                     </span>
+                  )}
                </div>
                <DialogFooter>
                   <DialogTrigger asChild>

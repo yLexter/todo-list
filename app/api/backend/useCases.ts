@@ -6,7 +6,7 @@ import {
    ITaskManager,
    IUser,
    IUserRepository,
-} from "./";
+} from ".";
 
 export class SQLTaskManager implements ITaskManager {
    createTask(idUser: string, task: ITask): Promise<void> {

@@ -1,6 +1,6 @@
 import React from "react";
 import { INote } from "../../entities/interfaces";
-import { Utils } from "@/entities/classes";
+import { global } from "@/entities/classes";
 import { twMerge } from "tailwind-merge";
 
 interface IPropNotes {
@@ -13,7 +13,7 @@ export default function Note({ note, className }: IPropNotes) {
       <div
          className={twMerge("rounded-md p-5 shadow-lg", className)}
          style={{
-            backgroundColor: Utils.getRandomColor(),
+            backgroundColor: global.utils.getRandomColor(),
          }}
       >
          <h3 className="capitalize font-bold mb-3 text-2xl">{note.title}</h3>

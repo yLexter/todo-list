@@ -1,4 +1,4 @@
-import { Utils } from "@/entities/classes";
+import { global } from "@/entities/classes";
 import { ITask } from "@/entities/interfaces";
 import React from "react";
 
@@ -9,10 +9,12 @@ interface IPropTabDay {
 const TaskComponent = ({ task }: { task: ITask }) => {
    return (
       <div className="flex justify-between items-center mb-4">
-         <div className="self-center">{Utils.getTimeFormatted(task.date)}</div>
+         <div className="self-center">
+            {global.utils.getTimeFormatted(task.date)}
+         </div>
 
          <div
-            style={{ backgroundColor: Utils.getRandomColor() }}
+            style={{ backgroundColor: global.utils.getRandomColor() }}
             className="w-11/12 p-3 rounded-md"
          >
             <p>{task.content}</p>
