@@ -80,6 +80,11 @@ class Utils {
 class Global {
    constructor(
       public readonly constants = {
+         routes: {
+            home: "/",
+            signIn: "auth/signIn",
+         },
+
          routesApi: {
             note: "http://localhost:3000/api/note",
             task: "http://localhost:3000/api/task",

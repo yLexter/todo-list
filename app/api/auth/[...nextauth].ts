@@ -1,41 +1,31 @@
 import { global } from "@/entities";
+import { AuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-export default NextAuth({
+export const nextAuthOptions: AuthOptions = {
    providers: [
       CredentialsProvider({
+         id: "credentials",
          name: "credentials",
          credentials: {
             username: {
-               label: "",
                type: "text",
                placeholder: "username",
             },
             password: {
-               label: "",
-               type: "text",
-               placeholder: "username",
+               type: "password",
+               placeholder: "password",
             },
          },
 
          async authorize(credentials, req) {
-            const res = await fetch(global.constants.routesApi.signIn, {
-               method: "POST",
-               body: JSON.stringify({
-                  username: credentials?.username,
-                  password: credentials?.password,
-               }),
-            });
-
-            const user = await res.json();
+            const user = { id: "1", name: "ali", password: "ali123" };
 
             return user;
          },
       }),
    ],
+};
 
-   pages: {
-      signIn: "/auth/signIn",
-   },
-});
+export default NextAuth(nextAuthOptions);

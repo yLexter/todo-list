@@ -1,4 +1,4 @@
-import LoginScreen from "@/app/auth/signIn/page";
+import LoginScreen from "@/app/signIn/page";
 import MainMenu from "@/components/menu/MainMenu";
 import React from "react";
 import { redirect } from "next/navigation";
@@ -15,6 +15,7 @@ export default function LayoutProvider({
 }: IPropLaoutProvider) {
    return (
       <main className="flex w-full h-full">
+         <div className="w-1/5 h-full"></div>
          <MainMenu />
          <section className={twMerge("flex-1", className)}>{children}</section>
       </main>

@@ -11,14 +11,17 @@ interface IPropNotes {
 export default function Note({ note, className }: IPropNotes) {
    return (
       <div
-         className={twMerge("rounded-md p-5 shadow-lg", className)}
+         className={twMerge(
+            "relative rounded-md px-5 py-4 shadow-lg h-64 overflow-hidden whitespace-normal",
+            className
+         )}
          style={{
             backgroundColor: global.utils.getRandomColor(),
          }}
       >
-         <h3 className="capitalize font-bold mb-3 text-2xl">{note.title}</h3>
+         <h3 className="capitalize font-bold mb-2 text-2xl">{note.title}</h3>
 
-         <h5 className="leading-tight text-justify font-normal">
+         <h5 className="text-ellipsis leading-tight text-justify font-normal">
             {note.description}{" "}
          </h5>
       </div>

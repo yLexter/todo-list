@@ -1,4 +1,4 @@
-import PageLogin from "./LoginScreen";
+import PageLogin from "../../components/forms/LoginScreen";
 
 type IPropLoginScreen = {};
 

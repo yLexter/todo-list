@@ -6,29 +6,30 @@ interface IPropTabDay {
    tasks: ITask[];
 }
 
-const TaskComponent = ({ task }: { task: ITask }) => {
-   return (
-      <div className="flex justify-between items-center mb-4">
-         <div className="self-center">
-            {global.utils.getTimeFormatted(task.date)}
-         </div>
-
-         <div
-            style={{ backgroundColor: global.utils.getRandomColor() }}
-            className="w-11/12 p-3 rounded-md"
-         >
-            <p>{task.content}</p>
-         </div>
-      </div>
-   );
-};
-
 export default function TabDay({ tasks }: IPropTabDay) {
+   const currentDay = new Date().getDate();
+
    return (
       <>
-         {tasks.map((task) => (
-            <TaskComponent key={task.id} task={task} />
-         ))}
+         {tasks
+            .filter((task) => task.date.getDate() === currentDay)
+            .map((task) => (
+               <div
+                  key={`Task-${task.id}`}
+                  className="flex justify-between items-center mb-4"
+               >
+                  <div className="self-center">
+                     {global.utils.getTimeFormatted(task.date)}
+                  </div>
+
+                  <div
+                     style={{ backgroundColor: global.utils.getRandomColor() }}
+                     className="w-11/12 p-3 rounded-md"
+                  >
+                     <p>{task.content}</p>
+                  </div>
+               </div>
+            ))}
       </>
    );
 }

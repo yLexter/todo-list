@@ -36,7 +36,7 @@ export default function TabWeek({ tasks }: IPropTabWeek) {
             <tbody>
                {rows.map(([time, tasks]) => (
                   <tr key={`TimeTable-${time}`}>
-                     <th>{time}</th>
+                     <th className="font-semibold">{time}</th>
 
                      {global.utils.daysOfWeek.map(({ name, day }) => {
                         return tasks.map((task) => {

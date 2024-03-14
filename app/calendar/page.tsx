@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import TitleOption from "../../components/utils/UI/TitleOption";
+import TitleOption from "../../components/ui/utils/TitleOption";
 import { ITask } from "@/entities/interfaces";
 import TabDay from "./TabDay";
 import TabWeek from "./TabWeek";
@@ -8,6 +10,9 @@ import LayoutProvider from "../LayoutProvider";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ModallAddTask from "@/components/modals/ModalAddTask";
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+import { global } from "@/entities";
 
 interface IPropCalendar {}
 
@@ -28,12 +33,22 @@ export default function Page({}: IPropCalendar) {
       {
          id: "y",
          content: "task 2",
-         date: new Date(Date.now() + 3600 * 1000 * 10 + 5 * 1000),
+         date: new Date(Date.now() + 3600 * 1000 * 10 + 50 * 1000),
       },
       {
-         id: "z",
-         content: "task 3",
+         id: "za",
+         content: "task 4",
+         date: new Date(Date.now() + 3600 * 1000 * 28 + 1000 * 1000),
+      },
+      {
+         id: "za",
+         content: "task 5",
          date: new Date(Date.now() + 3600 * 1000 * 28 + 10 * 1000),
+      },
+      {
+         id: "za",
+         content: "task 6",
+         date: new Date(Date.now() + 3600 * 1000 * 28 + 100 * 1000),
       },
    ];
 
@@ -45,7 +60,7 @@ export default function Page({}: IPropCalendar) {
    });
 
    return (
-      <LayoutProvider className="px-10 pt-5 bg-gray-300/70">
+      <LayoutProvider className="px-10 pt-5 ">
          <div className="flex justify-between items-center gap-2 mb-5">
             <TitleOption title={dateToString} />
 

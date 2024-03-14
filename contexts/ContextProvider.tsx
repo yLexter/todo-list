@@ -1,12 +1,16 @@
 "use client";
 
-import React from "react";
 import { SessionProvider } from "next-auth/react";
+import { ThemeProvider } from "./ThemeProvider";
 
-type IPropContextProvider = {
+export default function ContextProvider({
+   children,
+}: {
    children: React.ReactNode;
-};
-
-export default function ContextProvider({ children }: IPropContextProvider) {
-   return <SessionProvider>{children}</SessionProvider>;
+}): React.ReactNode {
+   return (
+      <ThemeProvider>
+         <SessionProvider>{children}</SessionProvider>;
+      </ThemeProvider>
+   );
 }

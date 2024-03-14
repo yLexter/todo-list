@@ -29,13 +29,37 @@ const TableBodyMonth = ({ tasks }: IPropTabWeek) => {
          {Array.from({ length: totalLines }).map((ignored, column) => (
             <tr>
                {Array.from({ length: totalDayOfWeek }).map((ignored2, day) => {
+                  const tasksToday = tasks.filter(
+                     (task) => task.date.getDate() === currentDay
+                  );
+
                   if (
                      (column === 0 && day < dayOfFirstDayDate - 1) ||
                      currentDay > informationMonth.total
-                  )
+                  ) {
                      return <th className="w-auto h-24"></th>;
+                  }
 
-                  return <th className="w-auto h-24">{currentDay++}</th>;
+                  return (
+                     <th className="w-auto h-24">
+                        <span>{currentDay++}</span>
+
+                        <div className="mt-auto flex flex-col gap-y-1">
+                           {tasksToday.slice(0, 3).map((x) => {
+                              return (
+                                 <span
+                                    key={`KeyAq-${x}`}
+                                    className="mx-auto rounded-lg w-2/3 h-2"
+                                    style={{
+                                       backgroundColor:
+                                          global.utils.getRandomColor(),
+                                    }}
+                                 ></span>
+                              );
+                           })}
+                        </div>
+                     </th>
+                  );
                })}
             </tr>
          ))}
