@@ -1,15 +1,17 @@
-import LoginScreen from "@/app/signIn/page";
 import MainMenu from "@/components/menu/MainMenu";
 import React from "react";
 import { redirect } from "next/navigation";
 import { twMerge } from "tailwind-merge";
+import { getServerSession } from "next-auth";
+import { global } from "@/entities";
+import { NextAuthOptions } from "./api/auth/[...nextauth]/route";
 
 type IPropLaoutProvider = {
    children: React.ReactNode;
    className?: string;
 };
 
-export default function LayoutProvider({
+export default async function LayoutProvider({
    children,
    className,
 }: IPropLaoutProvider) {

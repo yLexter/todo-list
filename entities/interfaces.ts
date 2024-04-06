@@ -2,7 +2,7 @@ export interface INote {
    id: string;
    title: string;
    description: string;
-   tagNote: ITagNote;
+   tagNote?: ITagNote;
 }
 
 export interface ITask {

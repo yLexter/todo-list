@@ -9,8 +9,8 @@ export default function ContextProvider({
    children: React.ReactNode;
 }): React.ReactNode {
    return (
-      <ThemeProvider>
-         <SessionProvider>{children}</SessionProvider>;
-      </ThemeProvider>
+      <SessionProvider>
+         <ThemeProvider>{children}</ThemeProvider>
+      </SessionProvider>
    );
 }

@@ -22,7 +22,7 @@ const examplesNotes: INote[] = Array.from({ length: 10 }).map((x) => {
    };
 });
 
-export default function Notes({}: PropNotes) {
+export default async function Notes({}: PropNotes) {
    return (
       <LayoutProvider>
          <TitleOption title="Anotações" />

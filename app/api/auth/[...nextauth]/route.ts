@@ -3,7 +3,7 @@ import { AuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-export const nextAuthOptions: AuthOptions = {
+const NextAuthOptions: AuthOptions = {
    providers: [
       CredentialsProvider({
          id: "credentials",
@@ -11,11 +11,9 @@ export const nextAuthOptions: AuthOptions = {
          credentials: {
             username: {
                type: "text",
-               placeholder: "username",
             },
             password: {
                type: "password",
-               placeholder: "password",
             },
          },
 
@@ -26,6 +24,11 @@ export const nextAuthOptions: AuthOptions = {
          },
       }),
    ],
+   pages: {
+      signIn: global.constants.routes.signIn,
+   },
 };
 
-export default NextAuth(nextAuthOptions);
+export const handler = NextAuth(NextAuthOptions);
+
+export { handler as GET, handler as POST, NextAuthOptions };

@@ -1,6 +1,3 @@
-"use client";
-
-import { nextAuthOptions } from "@/app/api/auth/[...nextauth]";
 import { global } from "@/entities";
 import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";

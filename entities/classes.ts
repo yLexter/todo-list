@@ -82,14 +82,14 @@ class Global {
       public readonly constants = {
          routes: {
             home: "/",
-            signIn: "auth/signIn",
+            signIn: "/signIn",
          },
 
          routesApi: {
-            note: "http://localhost:3000/api/note",
-            task: "http://localhost:3000/api/task",
-            signIn: "http://localhost:3000/api/signIn",
-            register: "http://localhost:3000/api/register",
+            note: "/api/note",
+            task: "/api/task",
+            signIn: "/api/signIn",
+            register: "/api/register",
          },
       },
       public readonly utils = Utils

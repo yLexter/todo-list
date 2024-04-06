@@ -10,9 +10,6 @@ import LayoutProvider from "../LayoutProvider";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ModallAddTask from "@/components/modals/ModalAddTask";
-import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
-import { global } from "@/entities";
 
 interface IPropCalendar {}
 
