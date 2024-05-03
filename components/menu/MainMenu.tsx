@@ -6,9 +6,9 @@ import { Separator } from "../ui/separator";
 import { FaRegStickyNote, FaRegCalendarAlt, FaMoon } from "react-icons/fa";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { CiLogout, CiSun } from "react-icons/ci";
-import ListItems from "./ListItems";
+import { SideBarListOptions } from "./SideBarListItems";
 import { IoIosAdd } from "react-icons/io";
-import { Option } from "./Option";
+import { SideBarOptionButton, SideBarOptionLink } from "./SideBarOption";
 import SearchBar from "../ui/utils/SearchBar";
 import { useTheme } from "next-themes";
 import { MdOutlineLightMode } from "react-icons/md";
@@ -56,17 +56,21 @@ export default function MainMenu({}: PropMainMenu) {
             <Separator className="mb-4" />
          </header>
 
-         <ListItems text="Tarefas">
-            <Option.Link href={"/notes"} label="Notas" Icon={FaRegStickyNote} />
-            <Option.Link
+         <SideBarListOptions text="Tarefas">
+            <SideBarOptionLink
+               href={"/notes"}
+               label="Notas"
+               Icon={FaRegStickyNote}
+            />
+            <SideBarOptionLink
                href={"/calendar"}
                label="Calendário"
                Icon={FaRegCalendarAlt}
             />
             <Separator className="mb-4" />
-         </ListItems>
+         </SideBarListOptions>
 
-         <ListItems text="Listas">
+         <SideBarListOptions text="Listas">
             {tagNotesExample.map((tag) => {
                return (
                   <div
@@ -83,28 +87,32 @@ export default function MainMenu({}: PropMainMenu) {
                );
             })}
 
-            <Option.Button
+            <SideBarOptionButton
                onClick={() => {}}
                Icon={IoIosAdd}
                label="Adicionar Lista"
             />
             <Separator className="mb-4" />
-         </ListItems>
+         </SideBarListOptions>
 
-         <ListItems className="mt-auto self-end" text="Configurações">
-            <Option.Button
+         <SideBarListOptions className="mt-auto self-end" text="Configurações">
+            <SideBarOptionButton
                onClick={handleTheme}
                Icon={theme !== "light" ? MdOutlineLightMode : FaMoon}
                label={theme !== "light" ? "Claro" : "Escuro"}
             />
 
-            <Option.Button
+            <SideBarOptionButton
                onClick={() => {}}
                Icon={HiMenuAlt3}
                label="Configurações"
             />
-            <Option.Button onClick={() => {}} Icon={CiLogout} label="Sair" />
-         </ListItems>
+            <SideBarOptionButton
+               onClick={() => {}}
+               Icon={CiLogout}
+               label="Sair"
+            />
+         </SideBarListOptions>
       </aside>
    );
 }
