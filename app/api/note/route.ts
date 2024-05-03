@@ -1,5 +1,6 @@
 import { repository } from "@/app/api/(backend)";
 import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
    const { id } = req.body;
@@ -11,7 +12,7 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
          notes: notes,
       });
    } catch (error) {
-      res.status(400).json({ message: `Error: ${error}` });
+      return NextResponse.json({ message: `${error}` }, { status: 400 });
    }
 }
 
@@ -23,7 +24,7 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
 
       res.status(200).json({ message: "Sucesso ao criar nova nota" });
    } catch (error) {
-      res.status(400).json({ message: `Error: ${error}` });
+      return NextResponse.json({ message: `${error}` }, { status: 400 });
    }
 }
 
@@ -35,7 +36,7 @@ export async function PUT(req: NextApiRequest, res: NextApiResponse) {
 
       res.status(200).json({ message: "Sucesso ao atualizar nova nota" });
    } catch (error) {
-      res.status(400).json({ message: `Error: ${error}` });
+      return NextResponse.json({ message: `${error}` }, { status: 400 });
    }
 }
 
@@ -47,6 +48,6 @@ export async function DELETE(req: NextApiRequest, res: NextApiResponse) {
 
       res.status(200).json({ message: "Sucesso ao deletar nota" });
    } catch (error) {
-      res.status(400).json({ message: `Error: ${error}` });
+      return NextResponse.json({ message: `${error}` }, { status: 400 });
    }
 }

@@ -6,23 +6,40 @@ export interface INote {
 
 export interface ITask {
    id: string;
-   date: Date;
-   content: string;
+   title: string;
+   description: string;
+   status: "TO_DO" | "DOING" | "DONE";
+   createdAt: Date;
+   updatedAt: Date;
+   finished_at: Date | null;
+   task_type_id: string | null;
+   userId: string;
 }
 
 export interface IUser {
+   id: string;
+   email: string;
    name: string;
    password: string;
    notes: INote[];
    tasks: ITask[];
+   task_categories: ITaskCategory[];
+}
+
+export interface ITaskCategory {
+   id: string;
+   description: string;
+   color: string;
+   userId: string;
 }
 
 export interface IUserRepository {
    getUsers(): Promise<IUser[]>;
-   getUserById(idUser: string): Promise<IUser | undefined>;
-   createUser(user: IUser): Promise<void>;
+   getUserById(idUser: string): Promise<IUser | null>;
+   createUser(user: IUser): Promise<IUser>;
    uptadeUser(idOldUser: string, newUser: IUser): Promise<void>;
    deleteUser(idUser: string): Promise<void>;
+   authenticate(email: string, senha: string): Promise<IUser>;
 }
 
 export interface ITaskManager {

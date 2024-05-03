@@ -1,5 +1,6 @@
 import { repository } from "@/app/api/(backend)";
 import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 
 export async function GET(req: NextApiRequest, res: NextApiResponse) {
    const { id } = req.body;
@@ -7,11 +8,9 @@ export async function GET(req: NextApiRequest, res: NextApiResponse) {
    try {
       const tasks = await repository.db.tasks.getAllTasks(id);
 
-      res.status(200).json({
-         tasks: tasks,
-      });
+      return NextResponse.json({ tasks: tasks }, { status: 200 });
    } catch (error) {
-      res.status(400).json({ message: `Error: ${error}` });
+      return NextResponse.json({ message: `${error}` }, { status: 400 });
    }
 }
 
@@ -21,9 +20,12 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
    try {
       await repository.db.tasks.createTask(id, task);
 
-      res.status(200).json({ message: "Sucesso ao criar nova task" });
+      return NextResponse.json(
+         { message: "Sucesso ao criar nova task" },
+         { status: 200 }
+      );
    } catch (error) {
-      res.status(400).json({ message: `Error: ${error}` });
+      return NextResponse.json({ message: `${error}` }, { status: 400 });
    }
 }
 
@@ -33,9 +35,12 @@ export async function PUT(req: NextApiRequest, res: NextApiResponse) {
    try {
       await repository.db.tasks.updateTask(id, idTask, task);
 
-      res.status(200).json({ message: "Sucesso ao atualizar nova task" });
+      return NextResponse.json(
+         { message: "Sucesso ao atualizar nova task" },
+         { status: 200 }
+      );
    } catch (error) {
-      res.status(400).json({ message: `Error: ${error}` });
+      return NextResponse.json({ message: `${error}` }, { status: 400 });
    }
 }
 
@@ -45,8 +50,11 @@ export async function DELETE(req: NextApiRequest, res: NextApiResponse) {
    try {
       await repository.db.tasks.deleteTask(id, idTask);
 
-      res.status(200).json({ message: "Sucesso ao deletar task" });
+      return NextResponse.json(
+         { message: "Sucesso ao deletar task" },
+         { status: 200 }
+      );
    } catch (error) {
-      res.status(400).json({ message: `Error: ${error}` });
+      return NextResponse.json({ message: `${error}` }, { status: 400 });
    }
 }

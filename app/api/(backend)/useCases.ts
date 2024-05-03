@@ -1,3 +1,4 @@
+import { prisma } from "@/prisma/lib/prisma-client";
 import {
    IDataRepository,
    INote,
@@ -9,8 +10,10 @@ import {
 } from ".";
 
 export class SQLTaskManager implements ITaskManager {
-   createTask(idUser: string, task: ITask): Promise<void> {
-      throw new Error("Method not implemented.");
+   async createTask(idUser: string, task: ITask): Promise<void> {
+      await prisma.task.create({
+         data: task,
+      });
    }
    getTaskById(idUser: string, idTask: string): Promise<ITask | undefined> {
       throw new Error("Method not implemented.");
@@ -31,26 +34,76 @@ export class SQLTaskManager implements ITaskManager {
 }
 
 export class SQLUserManager implements IUserRepository {
-   getUsers(): Promise<IUser[]> {
-      throw new Error("Method not implemented.");
+   async authenticate(email: string, senha: string): Promise<IUser> {
+      const user = await prisma.user.findFirst({
+         where: { email: email, password: senha },
+         include: { notes: true, tasks: true, task_categories: true },
+      });
+
+      if (!user) {
+         throw new Error("User not found");
+      }
+
+      return user;
    }
-   getUserById(idUser: string): Promise<IUser | undefined> {
-      throw new Error("Method not implemented.");
+
+   async getUsers(): Promise<IUser[]> {
+      return await prisma.user.findMany({
+         include: { notes: true, tasks: true, task_categories: true },
+      });
    }
-   createUser(user: IUser): Promise<void> {
-      throw new Error("Method not implemented.");
+   async getUserById(idUser: string): Promise<IUser | null> {
+      const user = prisma.user.findFirst({
+         where: { id: idUser },
+         include: { notes: true, tasks: true, task_categories: true },
+      });
+
+      if (!user) {
+         throw new Error("User not found");
+      }
+
+      return user;
    }
-   uptadeUser(idOldUser: string, newUser: IUser): Promise<void> {
-      throw new Error("Method not implemented.");
+   async createUser(user: IUser): Promise<IUser> {
+      const newUser = await prisma.user.create({
+         data: {
+            email: user.email,
+            name: user.name,
+            password: user.password,
+         },
+      });
+
+      return {
+         ...newUser,
+         notes: [],
+         task_categories: [],
+         tasks: [],
+      };
    }
-   deleteUser(idUser: string): Promise<void> {
-      throw new Error("Method not implemented.");
+   async uptadeUser(idOldUser: string, newUser: IUser): Promise<void> {
+      await prisma.user.update({
+         where: { id: idOldUser },
+         data: {
+            email: newUser.email,
+            name: newUser.name,
+            password: newUser.password,
+         },
+      });
+   }
+   async deleteUser(idUser: string): Promise<void> {
+      await prisma.user.delete({ where: { id: idUser } });
    }
 }
 
 export class SQLNotesManager implements INoteManager {
-   createNote(idUser: string, note: INote): Promise<void> {
-      throw new Error("Method not implemented.");
+   async createNote(idUser: string, note: INote): Promise<void> {
+      await prisma.note.create({
+         data: {
+            userId: idUser,
+            title: note.title,
+            description: note.description,
+         },
+      });
    }
    getNoteById(idUser: string, idNote: string): Promise<INote | undefined> {
       throw new Error("Method not implemented.");

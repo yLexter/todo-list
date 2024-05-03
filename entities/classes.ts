@@ -81,6 +81,7 @@ class Global {
    constructor(
       public readonly constants = {
          routes: {
+            baseUrl: `${process.env.NEXTAUTH_URL || "http://localhost:3000"}`,
             home: "/",
             signIn: "/signIn",
          },

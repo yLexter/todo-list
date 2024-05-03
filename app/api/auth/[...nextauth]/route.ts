@@ -18,7 +18,22 @@ const NextAuthOptions: AuthOptions = {
          },
 
          async authorize(credentials, req) {
-            const user = { id: "1", name: "ali", password: "ali123" };
+            const {
+               constants: {
+                  routes: { baseUrl },
+                  routesApi: { signIn },
+               },
+            } = global;
+
+            const response = await fetch(`${baseUrl}${signIn}`, {
+               method: "POST",
+               body: JSON.stringify({
+                  email: credentials?.username,
+                  password: credentials?.password,
+               }),
+            });
+
+            const user = await response.json();
 
             return user;
          },
