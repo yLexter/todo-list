@@ -10,10 +10,21 @@ import LayoutProvider from "../LayoutProvider";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ModallAddTask from "@/components/modals/ModalAddTask";
+import { getSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+import { global } from "@/entities";
 
 interface IPropCalendar {}
 
-export default function Page({}: IPropCalendar) {
+export default async function Page({}: IPropCalendar) {
+   const session = await getSession();
+
+   if (!session) {
+      redirect(
+         `${global.constants.routes.baseUrl}/${global.constants.routes.signIn}`
+      );
+   }
+
    const todayDate = new Date();
    const dateToString = todayDate.toLocaleString("pt-BR", {
       day: "2-digit",
@@ -21,37 +32,17 @@ export default function Page({}: IPropCalendar) {
       year: "numeric",
    });
 
-   const tasks: ITask[] = [
-      {
-         id: "a",
-         content: "task1",
-         date: new Date(),
-      },
-      {
-         id: "y",
-         content: "task 2",
-         date: new Date(Date.now() + 3600 * 1000 * 10 + 50 * 1000),
-      },
-      {
-         id: "za",
-         content: "task 4",
-         date: new Date(Date.now() + 3600 * 1000 * 28 + 1000 * 1000),
-      },
-      {
-         id: "za",
-         content: "task 5",
-         date: new Date(Date.now() + 3600 * 1000 * 28 + 10 * 1000),
-      },
-      {
-         id: "za",
-         content: "task 6",
-         date: new Date(Date.now() + 3600 * 1000 * 28 + 100 * 1000),
-      },
-   ];
+   const tasks: ITask[] = [];
 
    const sortedTasks = tasks.sort((a, b) => {
-      const [hours1, minutes1] = [a.date.getHours(), a.date.getMinutes()];
-      const [hours2, minutes2] = [b.date.getHours(), b.date.getMinutes()];
+      const [hours1, minutes1] = [
+         a.createdAt.getHours(),
+         a.createdAt.getMinutes(),
+      ];
+      const [hours2, minutes2] = [
+         b.createdAt.getHours(),
+         b.createdAt.getMinutes(),
+      ];
 
       return hours1 - hours2 || minutes1 - minutes2;
    });

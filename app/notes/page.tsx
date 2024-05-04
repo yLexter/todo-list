@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
 import { INote } from "../../entities";
 import Note from "./Note";
 import TitleOption from "../../components/ui/utils/TitleOption";
-import AddNote from "../../components/modals/ModalAddNote";
 import ModalAddNote from "../../components/modals/ModalAddNote";
-import { redirect } from "next/navigation";
 import LayoutProvider from "../LayoutProvider";
 import { IoIosAdd } from "react-icons/io";
+import { getSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+import { global } from "@/entities";
 
 interface PropNotes {}
 
@@ -23,6 +23,14 @@ const examplesNotes: INote[] = Array.from({ length: 10 }).map((x) => {
 });
 
 export default async function Notes({}: PropNotes) {
+   const session = await getSession();
+
+   if (!session) {
+      redirect(
+         `${global.constants.routes.baseUrl}/${global.constants.routes.signIn}`
+      );
+   }
+
    return (
       <LayoutProvider>
          <TitleOption title="Anotações" />

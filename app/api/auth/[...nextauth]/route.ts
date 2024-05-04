@@ -1,4 +1,4 @@
-import { global } from "@/entities";
+import { IUser, global } from "@/entities";
 import { AuthOptions } from "next-auth";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -35,7 +35,7 @@ const NextAuthOptions: AuthOptions = {
 
             const user = await response.json();
 
-            return user;
+            return user as IUser;
          },
       }),
    ],

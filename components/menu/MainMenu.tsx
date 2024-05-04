@@ -12,24 +12,12 @@ import { SideBarOptionButton, SideBarOptionLink } from "./SideBarOption";
 import SearchBar from "../ui/utils/SearchBar";
 import { useTheme } from "next-themes";
 import { MdOutlineLightMode } from "react-icons/md";
-import { ITagNote } from "@/entities";
+import { ITaskCategory } from "@/entities";
+import { signOut } from "next-auth/react";
 
 interface PropMainMenu {}
 
-const tagNotesExample: ITagNote[] = [
-   {
-      name: "Projeto",
-      color: "rgb(33, 150, 243)",
-   },
-   {
-      name: "Trabalho",
-      color: "rgb(244, 67, 54)",
-   },
-   {
-      name: "Escola",
-      color: "rgb(76, 175, 80)",
-   },
-];
+const tagNotesExample: ITaskCategory[] = [];
 
 export default function MainMenu({}: PropMainMenu) {
    const { theme, setTheme } = useTheme();
@@ -74,14 +62,14 @@ export default function MainMenu({}: PropMainMenu) {
             {tagNotesExample.map((tag) => {
                return (
                   <div
-                     key={`Tag-${tag.name}`}
+                     key={`Tag-${tag.description}`}
                      className="w-full flex items-center gap-x-2 mb-2"
                   >
                      <div
                         style={{ backgroundColor: tag.color }}
                         className="h-3 w-3 rounded-lg"
                      ></div>
-                     <span>{tag.name}</span>
+                     <span>{tag.description}</span>
                      <span className="ml-auto font-semibold">2</span>
                   </div>
                );
@@ -108,7 +96,9 @@ export default function MainMenu({}: PropMainMenu) {
                label="Configurações"
             />
             <SideBarOptionButton
-               onClick={() => {}}
+               onClick={async () => {
+                  await signOut();
+               }}
                Icon={CiLogout}
                label="Sair"
             />
