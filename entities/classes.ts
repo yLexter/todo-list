@@ -91,6 +91,15 @@ class Global {
             task: "/api/task",
             signIn: "/api/signIn",
             register: "/api/register",
+            user: "/api/user",
+         },
+
+         getPathTotal(path: string) {
+            return `${this.routes.baseUrl}${path}`;
+         },
+
+         getPathTotalApi(path: string) {
+            return `${this.routes.baseUrl}${path}`;
          },
       },
       public readonly utils = Utils

@@ -35,7 +35,7 @@ const NextAuthOptions: AuthOptions = {
 
             const user = await response.json();
 
-            return user as IUser;
+            return user;
          },
       }),
    ],

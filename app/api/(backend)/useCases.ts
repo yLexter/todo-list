@@ -15,10 +15,13 @@ export class SQLTaskManager implements ITaskManager {
          data: task,
       });
    }
-   getTaskById(idUser: string, idTask: string): Promise<ITask | undefined> {
+   async getTaskById(
+      idUser: string,
+      idTask: string
+   ): Promise<ITask | undefined> {
       throw new Error("Method not implemented.");
    }
-   getAllTasks(idUser: string): ITask[] {
+   async getAllTasks(idUser: string): Promise<ITask[]> {
       throw new Error("Method not implemented.");
    }
    updateTask(

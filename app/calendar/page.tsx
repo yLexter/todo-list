@@ -13,18 +13,12 @@ import ModallAddTask from "@/components/modals/ModalAddTask";
 import { getSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { global } from "@/entities";
+import { useUserContext } from "@/contexts/UserProvider";
 
 interface IPropCalendar {}
 
 export default async function Page({}: IPropCalendar) {
    const session = await getSession();
-
-   if (!session) {
-      redirect(
-         `${global.constants.routes.baseUrl}/${global.constants.routes.signIn}`
-      );
-   }
-
    const todayDate = new Date();
    const dateToString = todayDate.toLocaleString("pt-BR", {
       day: "2-digit",
@@ -32,7 +26,15 @@ export default async function Page({}: IPropCalendar) {
       year: "numeric",
    });
 
-   const tasks: ITask[] = [];
+   if (!session) {
+      redirect(
+         `${global.constants.routes.baseUrl}/${global.constants.routes.signIn}`
+      );
+   }
+
+   const { data } = useUserContext();
+
+   const tasks = data?.tasks || [];
 
    const sortedTasks = tasks.sort((a, b) => {
       const [hours1, minutes1] = [

@@ -45,7 +45,7 @@ export interface IUserRepository {
 export interface ITaskManager {
    createTask(idUser: string, task: ITask): Promise<void>;
    getTaskById(idUser: string, idTask: string): Promise<ITask | undefined>;
-   getAllTasks(idUser: string): ITask[];
+   getAllTasks(idUser: string): Promise<ITask[]>;
    updateTask(
       idUser: string,
       idTask: string,
