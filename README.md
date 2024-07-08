@@ -1,30 +1,29 @@
 # ToDo List Web App
 
 ## Overview
-Este é um aplicativo web de ToDo List que permite aos usuários gerenciar suas notas e tarefas de maneira facil e intuitiva.
+This is a ToDo List web application that allows users to manage their notes and tasks in an easy and intuitive way.
 
-## Features
-- Adicionar, editar e excluir notas e tarefas.
-- Marcar tarefas como concluídas.
-- Filtrar notas e tarefas por status (concluído/não concluído).
+##Features
+- Add, edit and delete notes and tasks.
+- Mark tasks as completed.
+- Filter notes and tasks by status (completed/not completed).
 
-## Front-end:
+## Frontend:
 
-### Tecnologias Usadas
+### Technologies Used
 - Next.js
 - Tailwind CSS
 - TypeScript
 - Shardcn/ui
 
-![Todo App Image](https://i.ibb.co/999nD3q/Screenshot-5.png)
+![All App Image](https://i.ibb.co/999nD3q/Screenshot-5.png)
 
-## Back-end (Em construção):
+## Back-end (Under construction):
 
-### Modelagem DER
-![Modelagem DER](https://i.ibb.co/QbF0bt6/imagem-2024-05-04-185341418.png)
+### DER Modeling
+![DER Modeling](https://i.ibb.co/QbF0bt6/imagem-2024-05-04-185341418.png)
 
-### Tecnologias Usadas
-- Prisma
+### Technologies Used
+- Prism
 - Next.js API Routes
 - PostgreSQL
-
